@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 @Entity
 @Data
 public class Professor {
+
     @Id
     Long pro_num;
 

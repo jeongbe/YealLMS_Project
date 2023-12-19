@@ -93,7 +93,7 @@ public class certiController {
             if (professor != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("professor",professor);
-
+                model.addAttribute("professor", professor);
                 return "professor/PMain";
             }
             else {

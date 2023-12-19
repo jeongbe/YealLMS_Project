@@ -1,4 +1,4 @@
-package com.example.YealLMS.Entity;
+package com.example.YealLMS.Entity.ProfessorEntity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,6 +15,9 @@ public class LectureList {
     @Id
     @Column(name = "lec_code")
     int lec_code;
+
+    @Column(name = "pro_num")
+    long pro_num;
 
     @Column
     (name = "lec_name")
