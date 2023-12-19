@@ -51,4 +51,20 @@ public class testController {
     public String stuinfo(){
         return "student/stuInfo";
     }
+
+    @GetMapping("/lecpur")
+    public String lecpurr(){
+        return "student/lecpur";
+    }
+
+    @GetMapping("/delec")
+    public String delecc(){
+        return "student/delec";
+    }
+
+    @GetMapping("/lecdenot")
+    public String lecdenott(){
+
+        return "student/lecdenot";
+    }
 }

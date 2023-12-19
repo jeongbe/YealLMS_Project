@@ -1,0 +1,26 @@
+header{
+    width: 1800px;
+    height: 150px;
+
+}
+
+body{
+    width: 1800px;
+}
+
+nav{
+    width: 350px;
+    height: 800px;
+    float: left;
+}
+
+main{
+    float: left;
+    width: 1450px;
+    height: 800px;
+    /* background-color: blueviolet; */
+
+}
+
+
+

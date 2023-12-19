@@ -21,6 +21,16 @@ public class StudentController {
     @Autowired
     Studentrepository studentrepository;
 
+    //메인페이지 세션전달
+    @GetMapping("/student/login/main")
+    public String seMain(HttpSession session, Model model){
+        //로그인 세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        return "student/stuMain";
+    }
+
     //나의 정보를 뿌려주는 페이지
     @GetMapping("/student/login/main/student/info/{stunum}")
     public String stuinfo(@PathVariable Long stunum, HttpSession session, Model model){
@@ -51,7 +61,6 @@ public class StudentController {
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);
 
-        student student1 = studentrepository.findById(form.getStunum()).orElse(null);
 
         //변경된 값이 있을때만 변경이 일어나도록 함
         if (form.getChphone() != ""){
@@ -67,14 +76,16 @@ public class StudentController {
             student.setStu_blog(form.getChblog());
         }
 
-        studentrepository.save(student1);
-        model.addAttribute("student", student1);
+
+        studentrepository.save(student);
+        model.addAttribute("student", student);
 
 
         //다시 정보 뿌려주는페이지로 리다이렉트
         return "redirect:/student/login/main/student/info/" + student.getStu_num();
 
     }
+
     //비밀번호 변경하는페이지로 이동(세션전달)
     @GetMapping("/student/login/main/student/info/changePass/{stunum}")
     public String changePass(@PathVariable Long stunum,HttpSession session, Model model){
@@ -115,5 +126,39 @@ public class StudentController {
 
         }
 
+    }
+    //강의 목록으로 가는 매핑
+    @GetMapping("/student/login/main/student/info/leclist")
+    public String leclist(HttpSession session, Model model){
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+
+        return "student/leclist";
+    }
+
+    //강의 신청으로 가는 매핑
+
+    @GetMapping("/student/login/main/lecapp")
+    public String lecapp(HttpSession session, Model model){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        return "student/lecapp";
+    }
+
+    //커뮤니티로 가는 매핑
+    @GetMapping("/student/login/main/allnot")
+    public String allnot(HttpSession session, Model model){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+
+        return "student/allnot";
     }
 }

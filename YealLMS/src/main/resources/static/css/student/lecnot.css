@@ -1,0 +1,129 @@
+header{
+    width: 1800px;
+    height: 150px;
+
+}
+
+body{
+    width: 1800px;
+}
+
+nav{
+    width: 350px;
+    height: 800px;
+    float: left;
+}
+
+main{
+    float: left;
+    width: 1450px;
+    height: 800px;
+
+
+}
+
+.lecnot_form{
+    margin-left: 120px;
+    margin-top: 30px;
+    width: 1200px;
+
+}
+
+.lecnot_title{
+    display: flex;
+    border: 1px solid black;
+    height: 40px;
+}
+
+.lecnot_num{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecnot_name{
+    width: 450px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.write_name{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+
+}
+
+.lecnot_date{
+    width: 450px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecnot_cnt{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+
+
+.lecnot_content{
+    display: flex;
+    margin-top: 20px
+
+}
+
+.lecnot_numC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecnot_nameC{
+    width: 450px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.write_nameC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+
+}
+
+.lecnot_dateC{
+    width: 450px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecnot_cntC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+
+

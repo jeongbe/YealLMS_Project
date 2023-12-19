@@ -1,0 +1,196 @@
+header{
+    width: 1800px;
+    height: 300px;
+
+}
+
+
+
+section{
+    width: 1800px;
+    height: 150px;
+    /* background-color: pink; */
+
+
+}
+
+
+main{
+    width: 1800px;
+    height: 900px;
+    /* background-color: blueviolet; */
+
+
+}
+
+.search_allform{
+  text-align: center;
+
+
+}
+
+.lec_app_title{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.search_form{
+    margin-top: 30px;
+}
+
+.search_box{
+    width: 700px;
+    height: 35px;
+}
+
+.search_btn{
+    width: 100px;
+    height: 35px;
+    background-color: #c69774;
+}
+
+.lecapp_form{
+    margin-left: 165px;
+    margin-top: 15px;
+    width: 1400px;
+
+}
+
+.lecinfo_title{
+    display: flex;
+    border: 1px solid black;
+    height: 40px;
+}
+
+.leccode{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecname{
+    width: 370px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.proname{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+
+}
+
+.credit{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecdate{
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.person{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.apply{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: x-large;
+
+}
+
+.lecinfo_content{
+    display: flex;
+    margin-top: 25px
+
+}
+
+.leccodeC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.lecnameC{
+    width: 370px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.pronameC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+
+}
+
+.creditC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.lecdateC{
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.personC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.applyC{
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.apply_btn{
+    width: 60px;
+    height: 40px;
+    background-color: #c69774;
+
+}
+
+
+
+
+
+

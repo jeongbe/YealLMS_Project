@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/delec.css">
+</head>
+
+<body>
+<header><div class="body_con" th:replace="~{layout/SContent :: SContent}"></div></header>
+<nav></nav>
+<main>
+    <div class="delec_allform">
+    <h2>강의 제목</h2>
+    <hr>
+    <div class="delec_form">
+        <div class="delec_title">
+            <div class="delec_week">주차</div>
+            <div class="delec_name">강의 주제</div>
+            <div class="delec_att">출석여부</div>
+            <div class="delec_close">마감일</div>
+            <div class="delec_task">과제</div>
+
+        </div>
+        <div class="delec_content">
+            <div class="delec_weekC">1</div>
+            <div class="delec_nameC">오리엔테이션</div>
+            <div class="delec_attC">미결</div>
+            <div class="delec_closeC">2017.09.11</div>
+            <div class="delec_taskC">없음</div>
+        </div>
+        <hr>
+    </div>
+    </div>
+</main>
+
+</body>
+
+</html>

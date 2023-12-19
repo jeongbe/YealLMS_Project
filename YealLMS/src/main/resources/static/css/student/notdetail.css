@@ -1,0 +1,67 @@
+header{
+    width: 1800px;
+    height: 300px;
+
+}
+
+
+
+section{
+    width: 1800px;
+    height: 150px;
+    /* background-color: pink; */
+
+
+}
+
+
+main{
+    width: 1800px;
+    height: 900px;
+    /* background-color: blueviolet; */
+
+
+}
+
+.search_allform{
+  text-align: center;
+
+
+}
+
+.lec_app_title{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.not_allform{
+    margin-left: 500px;
+}
+
+.title_input{
+    width: 800px;
+    height: 35px;
+}
+
+.content_input{
+  margin-top: 30px;
+    width: 850px;
+    height: 200px;
+    resize: none;
+}
+
+.notlist_btn{
+    margin-top: 50px;
+    width: 200px;
+    height: 50px;
+    background-color: #c69774;
+    margin-left: 800px;
+}
+
+
+
+
+
+
+
+

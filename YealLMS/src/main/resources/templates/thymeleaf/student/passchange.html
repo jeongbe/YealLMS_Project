@@ -12,6 +12,8 @@
 <header><div class="body_con" th:replace="~{layout/SInfo :: SInfo}"></div></header>
 <nav></nav>
 <main>
+    <h1 class="stuinfo_title">나의 정보</h1>
+    <hr class="stuinfo_line">
     <form method="post" action="/student/login/main/student/info/chpass">
     <div class="chpass_form">
         <input th:value = ${stunum} name="stunum" style="display: none;">

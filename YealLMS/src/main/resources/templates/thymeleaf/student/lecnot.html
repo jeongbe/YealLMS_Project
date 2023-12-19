@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/lecnot.css">
+</head>
+
+<body>
+<header><div class="body_con" th:replace="~{layout/SContent :: SContent}"></div></header>
+<nav></nav>
+<main>
+
+    <h2>강의 제목</h2>
+    <hr>
+    <div class="lecnot_form">
+        <div class="lecnot_title">
+            <div class="lecnot_num">번호</div>
+            <div class="lecnot_name">제목</div>
+            <div class="write_name">작성자</div>
+            <div class="lecnot_date">등록일</div>
+            <div class="lecnot_cnt">조회</div>
+        </div>
+        <div class="lecnot_content">
+            <div class="lecnot_numC">2</div>
+            <div class="lecnot_nameC">휴강 공지</div>
+            <div class="write_nameC">홍길동</div>
+            <div class="lecnot_dateC">2017.09.11</div>
+            <div class="lecnot_cntC">89</div>
+        </div>
+        <hr>
+    </div>
+</main>
+</body>
+</html>

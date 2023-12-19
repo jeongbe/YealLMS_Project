@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/lecapp.css">
+
+</head>
+
+<body>
+<header><div class="body_con" th:replace="~{layout/Sheader :: Sheader}"></div></header>
+<section>
+    <div class="search_allform">
+        <div class="lec_app_title">
+            강의 신청
+        </div>
+        <div class="search_form">
+            <input type="text" class="search_box" placeholder="과목 or 교수명">
+            <button class="search_btn">조회</button>
+        </div>
+    </div>
+</section>
+<main>
+    <div class="lecapp_form">
+        <div class="lecinfo_title">
+            <div class="leccode">강의코드</div>
+            <div class="lecname">강의명</div>
+            <div class="proname">교수명</div>
+            <div class="credit">학점</div>
+            <div class="lecdate">수업기간</div>
+            <div class="person">정원</div>
+            <div class="apply">수강신청</div>
+        </div>
+        <div class="lecinfo_content">
+            <div class="leccodeC">SQ1525</div>
+            <div class="lecnameC">C언어</div>
+            <div class="pronameC">홍길동</div>
+            <div class="creditC">3학점</div>
+            <div class="lecdateC">2017-09-09 ~ 2017.12.12</div>
+            <div class="personC">30</div>
+            <div class="applyC"><button class="apply_btn">신청</button></div>
+        </div>
+        <hr>
+    </div>
+</main>
+
+
+</body>
+
+</html>

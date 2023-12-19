@@ -11,15 +11,15 @@
 <div class="header_box">
     <div class="header_title_box">
         <img src="/static/images/YALELogo.png" />
-        <a href="#" class="s_title"
+        <a href="/student/login/main" class="s_title"
         >예일대학교
             <p>LMS</p></a
         >
     </div>
     <div class="header_content">
         <a th:href="@{/student/login/main/student/info/{stunum}(stunum=${student.stu_num})}">내정보</a>
-        <a href="#">강의 신청</a>
-        <a class="last" href="#">커뮤니티</a>
+        <a href="/student/login/main/lecapp">강의 신청</a>
+        <a class="last" href="/student/login/main/allnot">커뮤니티</a>
         <div class="user_info">
             <p th:text="${student.stu_name}"></p><p>님!! 반갑습니다</p>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -9,11 +9,10 @@
 </head>
 
 <body>
-<header></header>
+<header><div class="body_con" th:replace="~{layout/SInfo :: SInfo}"></div></header>
 <nav></nav>
 <main>
     <div class="leclist_title">
-        <h2>강의 목록</h2>
         <input type="text" class="search_form"><button class="search_btn">검색</button>
     </div>
     <hr>

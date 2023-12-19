@@ -29,8 +29,8 @@
                 <div class="login_inputform">
                     <input type="text" placeholder="학번" class="login_stunum" required name="stunum"><br>
                     <input type="password" placeholder="비밀번호" class="login_password" required name="stupass">
+                    <p th:text="${error}"></p>
                 </div>
-                <p th:text="${error}"></p>
                 <button type="submit" class="login_btn">로그인</button>
             </div>
             <div class="join_link">

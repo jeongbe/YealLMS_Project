@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/allnot.css">
+
+</head>
+
+<body>
+<header><div class="body_con" th:replace="~{layout/Sheader :: Sheader}"></div></header>
+<section>
+    <div class="search_allform">
+        <div class="lec_app_title">
+            전체 공지사항
+        </div>
+        <hr>
+    </div>
+</section>
+<main>
+    <div class="not_form">
+        <div class="not_title">
+            <div class="not_num">번호</div>
+            <div class="not_name">제목</div>
+            <div class="write_name">작성자</div>
+            <div class="not_date">등록일</div>
+            <div class="not_cnt">조회</div>
+
+        </div>
+        <div class="not_content">
+            <div class="not_numC">1</div>
+            <div class="not_nameC">휴강공지</div>
+            <div class="write_nameC">홍길동</div>
+            <div class="not_dateC">2023.11.12</div>
+            <div class="not_cntC">787</div>
+        </div>
+        <hr>
+    </div>
+</main>
+
+
+</body>
+
+</html>
