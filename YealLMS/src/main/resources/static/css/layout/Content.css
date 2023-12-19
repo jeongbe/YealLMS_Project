@@ -1,0 +1,58 @@
+.lecture_room {
+    width: 220px;
+    background-color: #efefef;
+    /* margin-left: 3%; */
+    margin-top: 100px;
+}
+
+.tit {
+    display: flex;
+    font-size: 40px;
+    background-color: #c69774;
+    width: 220px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.con1,
+.con2,
+.con3 {
+    height: 100px;
+}
+
+.con1 a,
+.con2 a,
+.con3 a {
+    display: block;
+    font-size: 16px;
+    margin-left: 30px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.con1 a:hover,
+.con2 a:hover,
+.con3 a:hover {
+    color: #c69774;
+}
+
+.con1 div,
+.con2 div,
+.con3 div {
+    display: flex;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.con1,
+.con2 {
+    border-bottom: 1px solid #808080;
+}
+
+.point {
+    color: #c69774;
+}

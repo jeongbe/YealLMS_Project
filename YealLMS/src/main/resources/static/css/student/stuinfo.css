@@ -1,0 +1,159 @@
+header{
+    width: 1800px;
+    height: 150px;
+
+}
+
+body{
+    width: 1800px;
+}
+
+nav{
+    width: 350px;
+    height: 800px;
+    float: left;
+}
+
+main{
+    float: left;
+    width: 1450px;
+    height: 800px;
+    /* background-color: blueviolet; */
+
+}
+
+.stuinfo_title{
+    margin-top: 50px;
+    margin-left: 100px;
+
+}
+
+.stuinfo_line{
+    width: 1250px;
+}
+
+.stuinfo_form{
+    display: flex;
+
+}
+
+.stu_image{
+    margin-top: 70px;
+    margin-left: 100px;
+    width: 150px;
+    height: 180px;
+}
+
+.nomal_info{
+    margin-top: 60px;
+    margin-left: 80px;
+
+}
+
+.nomal_info_line{
+    width: 850px;
+    margin-left: 80px;
+}
+
+.studeinfo_form{
+    margin-left: 80px;
+
+
+}
+
+.deinfo_line1, .deinfo_line2, .deinfo_line3{
+    display: flex;
+}
+
+.border_line1, .border_line2, .border_line3{
+    display: flex;
+    margin-left: 40px;
+    margin-top: 10px;
+
+}
+
+.info_input{
+    width: 180px;
+    height: 30px;
+}
+
+.stu_addinfo_form{
+    margin-left: 350px;
+
+}
+
+.stu_addinfo_title{
+    margin-top: 60px;
+    margin-left: 1px;
+}
+
+.stu_blog_link{
+    width: 700px;
+    height: 50px;
+}
+
+textarea{
+    width: 700px;
+    height: 100px;
+    resize: none;
+}
+
+.change_form{
+    text-align: center;
+    margin-top: 25px;
+
+}
+
+
+.pass_change{
+    width:120px;
+    height:35px;
+    margin-left: 15px;
+     background-color: #c69774;
+
+}
+
+.info_change{
+width:120px;
+height:35px;
+ background-color: #c69774;
+
+}
+
+.myinfo_btn{
+    width: 150px;
+    height: 50px;
+    margin-top:30px;
+    background-color: #c69774;
+
+}
+
+.leclist_btn{
+    width:150px;
+    height:50px;
+    margin-top: 30px;
+    background-color: #c69774;
+}
+
+.list_form{
+   margin-top: 100px;
+   text-align: center;
+   margin-left:80px;
+   border:1px solid black;
+   height: 300px;
+   width: 250px;
+}
+
+.list_title{
+font-size: larger;
+margin-top:20px;
+
+}
+
+
+
+
+
+
+
+

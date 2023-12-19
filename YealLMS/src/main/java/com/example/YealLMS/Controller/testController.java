@@ -26,4 +26,29 @@ public class testController {
     public String hello4(){
         return "layout/SInfo";
     }
+    
+     @GetMapping("/certi")
+    public String certi(){
+        return "join,login/Certi";
+    }
+
+    @GetMapping("/join")
+    public String join(){
+        return "join,login/join";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "join,login/login";
+    }
+
+    @GetMapping("/stumain")
+    public String stumain(){
+        return "student/stuMain";
+    }
+
+    @GetMapping("/stuinfo")
+    public String stuinfo(){
+        return "student/stuInfo";
+    }
 }

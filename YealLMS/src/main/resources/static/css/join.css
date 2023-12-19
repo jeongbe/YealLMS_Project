@@ -1,0 +1,113 @@
+.join_allform {
+    width: 1400px;
+    height: 700px;
+    justify-content: center;
+    display: flex;
+}
+
+
+.joinform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+header {
+    width: 800px;
+    height: 80px;
+    justify-content: center;
+
+}
+
+h3{
+    margin-left: 20px;
+}
+
+p{
+    color: red;
+}
+
+
+.join_realtext{
+    width: 800px;
+    height: 50px;
+    display: flex;
+    font-size: 6ch;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.join_logoform{
+    display: flex;
+}
+
+
+main {
+    width: 800px;
+    height: 450px;
+    background-color: aliceblue;
+    border: 1px solid black;
+    border-radius: 25px;
+
+}
+
+.join_lmslogo{
+    width: 55px;
+    height: 75px;
+    margin-right: 15px;
+}
+
+.join{
+    width: 800px;
+    height: 40px;
+    font-size: larger;
+
+}
+
+.join_main_input_form{
+    display: flex;
+}
+
+.join_inputform{
+   margin-left: 220px;
+   margin-top: 40px;
+
+}
+
+.join_stunum{
+    width: 350px;
+    height: 40px;
+
+}
+
+.join_password, .join_passcheck{
+    width: 350px;
+    height: 40px;
+    margin-top: 10px;
+
+}
+
+.join_btn_form{
+
+    margin-left: 70px;
+    margin-top: 50px;
+}
+
+.join_btn{
+    width: 200px;
+    height: 50px;
+    background-color: #c69774;
+}
+
+.pass_check_error{
+    display: none;
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/stuinfo.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/SInfo :: SInfo}"></div>
+</header>
+<nav>
+<!--    <div class="list_form">-->
+<!--    <h1 class="list_title">내 정보</h1>-->
+<!--        <a th:href="@{{stunum}(stunum= ${stunum})}"><button class="myinfo_btn">나의 정보</button></a><br>-->
+<!--        <button class="leclist_btn">강의 목록</button>-->
+<!--    </div>-->
+</nav>
+<main>
+    <h1 class="stuinfo_title">나의 정보</h1>
+    <hr class="stuinfo_line">
+    <div class="stuinfo_form">
+        <img src="/static/images/lmslogo.png" class="stu_image">
+        <div>
+            <h2 class="nomal_info">기본 정보</h2>
+            <hr class="nomal_info_line">
+            <div class="studeinfo_form">
+                <div class="deinfo_line1">
+                    <div class="border_line1">구분 :<input type="text" class="info_input" readonly></div>
+                    <div class="border_line2">학번 :<input type="text" class="info_input" readonly th:value = ${student.stu_num}></div>
+                    <div class="border_line3">전공 :<input type="text" class="info_input" readonly th:value= ${student.stu_major}></div>
+                </div>
+                <div class="deinfo_line2">
+                    <div class="border_line1">학년 :<input type="text"  class="info_input" readonly th:value = ${student.stu_grade}></div>
+                    <div class="border_line2">이름 :<input type="text"  class="info_input" readonly th:value = ${student.stu_name}></div>
+                    <div class="border_line3">번호 :<input type="text"  class="info_input" readonly th:value = ${student.stu_phone}></div>
+                </div>
+                <div class="deinfo_line3">
+                    <div class="border_line1">생일 :<input type="text"  class="info_input" readonly th:value = ${student.stu_birth}></div>
+                    <div class="border_line2">주소 :<input type="text"  class="info_input" readonly th:value = ${student.stu_addr}></div>
+                    <div class="border_line3">메일 :<input type="text"  class="info_input" readonly th:value = ${student.stu_email}></div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="stu_addinfo_form">
+        <h2 class="stu_addinfo_title">개인 프로필</h2>
+        <h3>블로그 주소</h3> <input type="text"  readonly class="stu_blog_link" th:value = ${student.stu_blog}>
+    </div>
+    <div class="change_form">
+        <a th:href="@{change/{stunum}(stunum= ${student.stu_num})}"><button class="info_change">내 정보 수정</button></a>
+        <a th:href="@{changePass/{stunum}(stunum= ${student.stu_num})}"><button class="pass_change">비밀번호 변경</button></a>
+    </div>
+</main>
+
+</body>
+
+</html>

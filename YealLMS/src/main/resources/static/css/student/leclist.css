@@ -1,0 +1,70 @@
+header{
+    width: 1800px;
+    height: 150px;
+    background-color: aqua;
+}
+
+body{
+    width: 1800px;
+}
+
+nav{
+    width: 350px;
+    height: 800px;
+    background-color: brown;
+    float: left;
+}
+
+
+main{
+    float: left;
+    width: 1450px;
+    height: 800px;
+    /* background-color: blueviolet; */
+
+}
+
+.leclist_title{
+    margin-top: 90px;
+    margin-left: 300px;
+    display: flex;
+
+}
+
+.search_form{
+    margin-left: 450px;
+    width: 250px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.search_btn{
+    width: 80px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.leclist_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leclist_imageform{
+    display: flex;
+}
+
+.lec_image{
+    width: 190px;
+    height: 130px;+
+
+}
+
+.lec_info{
+  display: flex;
+}
+
+.season{
+    margin-left: 20px;
+}

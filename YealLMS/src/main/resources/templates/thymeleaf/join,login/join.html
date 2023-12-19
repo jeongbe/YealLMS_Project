@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/join.css">
+</head>
+<body>
+<div class="join_allform">
+    <div class="joinform">
+        <header>
+            <div class="join_realtext">
+                <div class="join_logoform">
+                    <img src="/static/images/lmslogo.png" class="join_lmslogo">
+                </div>
+                예일대학교
+            </div>
+        </header>
+        <main>
+            <div class="join">
+                <h3>회원가입</h3>
+            </div>
+            <hr>
+            <form method="post" action="/student/join">
+            <div class="join_main_input_form">
+                <div class="join_inputform">
+                    <div class="join_info">
+                        <input type="text" name="stunum" th:value="${certi}"><br>
+<!--                        <p th:text="${certi}" name="stu_name"></p><br>-->
+                        <input type="password" class="join_password" placeholder="비밀번호 입력" required name="stupass"><br>
+                        <input type="password" class="join_passcheck" placeholder="비밀번호 확인" required><br>
+                        <div class="pass_check_error"><p>비밀번호를 확인하세요</p></div>
+                    </div>
+                    <div class="join_btn_form">
+                        <button type="submit" class="join_btn">가입하기</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </main>
+    </div>
+</div>
+<script>
+    var pass = document.querySelector('.join_password');
+    var passch = document.querySelector('.join_passcheck');
+    var passerr = document.querySelector('.pass_check_error');
+    var join_btn = document.querySelector('.join_btn');
+
+   passch.addEventListener('blur', function(){
+
+    var Ipass = pass.value;
+    var Ipassch = passch.value;
+
+        if (Ipass != Ipassch) {
+        passch.style.borderColor = "red";
+        passerr.style.display = "block";
+        join_btn.disabled = "true";
+
+    }
+    else{
+        passch.style.borderColor = "";
+        passerr.style.display = "";
+        join_btn.disabled = "";
+    }
+
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/passchange.css">
+</head>
+
+<body>
+<header><div class="body_con" th:replace="~{layout/SInfo :: SInfo}"></div></header>
+<nav></nav>
+<main>
+    <form method="post" action="/student/login/main/student/info/chpass">
+    <div class="chpass_form">
+        <input th:value = ${stunum} name="stunum" style="display: none;">
+        <h3>비밀번호 변경</h3>
+        기본 비밀번호 : <input type="password" class="stu_pass" name="stupassword"><br>
+        변경 비밀번호 : <input type="password" class="ch_pass" name="chpassword"><br>
+        비밀번호 확인 : <input type="password" class="ch_passch"><br>
+        <p th:text = "${error}"></p>
+    </div>
+    <button class="save_btn">저장 하기</button>
+    </form>
+</main>
+
+<script>
+    var pass = document.querySelector('.ch_pass');
+    var passch = document.querySelector('.ch_passch');
+    var passerr = document.querySelector('.pass_check_error');
+    var join_btn = document.querySelector('.save_btn');
+
+   passch.addEventListener('blur', function(){
+
+    var Ipass = pass.value;
+    var Ipassch = passch.value;
+
+        if (Ipass != Ipassch) {
+        passch.style.borderColor = "red";
+        passerr.style.display = "block";
+        join_btn.disabled = "true";
+
+    }
+    else{
+        passch.style.borderColor = "";
+        passerr.style.display = "";
+        join_btn.disabled = "";
+    }
+
+    });
+</script>
+</body>
+
+</html>

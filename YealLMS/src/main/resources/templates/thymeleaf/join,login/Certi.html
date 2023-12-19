@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Certi.css">
+</head>
+
+<body>
+<div class="allform">
+    <div class="certiform">
+        <header>
+            <div class="realtext">
+                <div class="logoform">
+                    <img src="/static/images/lmslogo.png" class="lmslogo">
+                </div>
+                학번인증
+            </div>
+        </header>
+        <main>
+            <form method="post" action="/student/certi">
+            <div class="certi">
+                <h3>학번과 생년월일 입력</h3>
+            </div>
+            <hr>
+            <div class="main_input_form">
+                <div class="inputform">
+                    <input type="text" class="stunumtext" placeholder="학번을 입력하세요" required name="stunum"><br>
+                    <input type="text" class="stubirthtext" placeholder="생년월일을 입력하세요" required name="stubirth">
+                </div>
+                <button type="submit" class="stucerti_btn">인증하기</button>
+            </div>
+                <p th:text="${error}" style="color: red; text-align: center;"></p>
+            </form>
+        </main>
+
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/infochange.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/SInfo :: SInfo}"></div>
+</header>
+<nav>
+</nav>
+<main>
+    <form method="post" action="/student/login/main/student/info/">
+        <input th:value = ${stunum} name="stunum" style="display: none;">
+    <div class="ch_form">
+        <h3 class="ch_title">나의 정보 수정</h3>
+        번호 : <input type="text" class="ch_phone" name="chphone"><br>
+        주소 : <input type="text" class="ch_addr" name="chaddr"><br>
+        메일 : <input type="text" class="ch_mail" name="chmail"><br>
+        blog : <input type="text" class="ch_blog" name="chblog">
+    </div>
+    <button class="save_btn">저장 하기</button>
+    </form>
+</main>
+</body>
+</html>
