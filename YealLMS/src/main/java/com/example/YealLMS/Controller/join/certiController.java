@@ -2,7 +2,9 @@ package com.example.YealLMS.Controller.join;
 
 import com.example.YealLMS.DTO.JoinForm.StuCertiForm;
 import com.example.YealLMS.DTO.JoinForm.StuJoinForm;
+import com.example.YealLMS.Entity.Join.Professor;
 import com.example.YealLMS.Entity.Join.student;
+import com.example.YealLMS.Repository.studnet.ProfessorRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -18,6 +20,8 @@ public class certiController {
 
     @Autowired
     Studentrepository studentrepository;
+    @Autowired
+    ProfessorRepository professorRepository;
 
 
      //학번 인증 매핑
@@ -61,22 +65,47 @@ public class certiController {
     //로그인 매핑
     @PostMapping("/student/login/main")
     public String stulogin(StuJoinForm form, Model model,HttpServletRequest request){
-        //정보가 일치하는지확인
-       student student = studentrepository.login(form.getStunum(),form.getStupass());
+        // 교수와 구분하여 정보가 일치하는지확인
+        //학생이라면
+        if (form.getStunum()<100000000){
+            //학생 레포지토리에서 비교
+         student student = studentrepository.login(form.getStunum(),form.getStupass());
 
-       //정보가 일치한다면 세션 생성후 메인페이지 반환
-       if (student != null){
-           HttpSession session = request.getSession();
-           session.setAttribute("student",student);
-           return  "redirect:/student/login/main/" + form.getStunum();
-       }
-       //정보가 일치하지 않는다면 에러메세지를 띄어줌
-       else {
-           String error ="학번또는 비밀번호를 확인하세요";
-           model.addAttribute("error",error);
-           return "join,login/login";
+            //정보가 일치한다면 세션 생성후 메인페이지 반환
+            if (student != null){
+                HttpSession session = request.getSession();
+                session.setAttribute("student",student);
+                return  "redirect:/student/login/main/" + form.getStunum();
+            }
+            //정보가 일치하지 않는다면 에러메세지를 띄어줌
+            else {
+                String error ="학번또는 비밀번호를 확인하세요";
+                model.addAttribute("error",error);
+                return "join,login/login";
 
-       }
+            }
+
+        }
+        else {
+            //교수 레파진토리에서 비교
+            Professor professor = professorRepository.prologin(form.getStunum(), form.getStupass());
+
+            if (professor != null){
+                HttpSession session = request.getSession();
+                session.setAttribute("professor",professor);
+
+                return "professor/PMain";
+            }
+            else {
+                String error ="학번또는 비밀번호를 확인하세요";
+                model.addAttribute("error",error);
+                return "join,login/login";
+
+            }
+
+        }
+
+
 
     }
 
