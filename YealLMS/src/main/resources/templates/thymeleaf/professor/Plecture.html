@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head >
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/professor/Plecture.css" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+    <div class="container">
+        <div class="title_con">
+            <p>진행중인 강의</p>
+            <button onclick="location.href='/pro/insert'">강의 등록</button>
+        </div>
+        <div class="lecture_list" >
+            <div class="t_header">
+                <p>강의 코드</p>
+                <p>강의 이름</p>
+                <p>수업 기간</p>
+            </div>
+            <div class="t_content" th:each="lectureList : ${leList}">
+                <p th:text="${lectureList.lec_code}"></p>
+                <p th:text="${lectureList.lec_name}"></p>
+                <p th:text="${lectureList.let_start} + ' ~ ' + ${lectureList.let_close}"></p>
+            </div>
+
+        </div>
+
+    </div>
+</body>

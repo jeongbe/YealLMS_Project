@@ -1,0 +1,42 @@
+.S_Content {
+    /* background-color: bisque; */
+    width: 250px;
+    margin-top: 100px;
+    margin-left: 3%;
+}
+
+.S_Content p {
+    background-color: #c69774;
+    font-size: 35px;
+    height: 60px;
+    text-align: center;
+    color: white;
+    padding-top: 10%;
+    border: 1px rgb(225 225 225) solid;
+}
+
+.S_Content a {
+    height: 40px;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: #808080;
+    font-size: 25px;
+    border: 1px rgb(225 225 225) solid;
+    padding-top: 18px;
+    padding-left: 15px;
+}
+
+.S_Content a::after {
+    position: absolute;
+    content: '';
+    display: block;
+    border-bottom: 2px solid #c2c0c0;
+}
+
+.S_Content a:hover::after {
+    transition: all 200ms ease-in-out;
+    left: 10px;
+    width: 110px;
+    margin: 6px;
+}

@@ -1,0 +1,30 @@
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          show_sql: true
+          format_sql: true
+          type: trace
+  thymeleaf:
+    prefix: classpath:templates/thymeleaf/
+    check_template-location: true
+    suffix: .html
+    mode: HTML
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://yeil03.iptime.org:3306/team1_1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: team1
+    password: 1234
+  servlet:
+    encoding:
+      force-response: true
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

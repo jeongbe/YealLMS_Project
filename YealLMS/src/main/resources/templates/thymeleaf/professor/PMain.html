@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/layout/style.css">
+    <link rel="stylesheet" href="/static/css/professor/PMain.css">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="body_con" th:replace="~{layout/Pheader :: Pheader}"></div>
+<div class="container_box">
+    <div class="lec_list">
+        <div class="cont1">
+            <p>진행중인 강의</p>
+            <p>더보기 +</p>
+        </div>
+        <div class="line"></div>
+        <div class="cont1_list_box">
+            <div class="cont1_list_box1">
+                <p>강의 코드</p>
+                <p>강의 이름</p>
+                <p>수업 시간</p>
+            </div>
+            <div class="cont1_list_box2">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+            </div>
+        </div>
+    </div>
+    <div class="inform_list">
+        <div class="con2">
+            <p>공지사항</p>
+        </div>
+        <div class="line"></div>
+        <div class="cont2_list_box1">
+            <p>◈</p>
+            <div class="st">
+
+                <p>공지사항1</p>
+                <p>[업로드 날짜]</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="Qmeun">
+    <div class="b1">
+        <button>강의 등록</button>
+    </div>
+    <div class="b2">
+        <button>내 정보 수정</button>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/professor/PinsertLecture.css">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="body_con" th:replace="~{layout/Pheader :: Pheader}"></div>
+<div class="inser_table">
+
+    <div class="insert_table_title">
+        <p>◉ </p>
+        <p>강의 등록</p>
+    </div>
+    <form action="/pro/insert/lecture" method="post">
+    <div class="in_con1">
+        <div class="tt">
+            <p>수업계획서</p>
+        </div>
+        <div class="cc">
+            <div class="cont1">
+                <div class="input_t">
+                    교과목 명 : <input type="text" id="LecName" name="LecName">
+                </div>
+                <div class="input_t tx">
+                    교수명 :   <input type="text" id="ProName" name="ProName">
+                </div>
+                <div class="input_t tx2">
+                    학점 : <input type="text" id="LecCredit" name="LecCredit">
+                </div>
+            </div>
+            <div class="cont2">
+                <div class="input_t tx3" >
+                    연락처 : <input type="text" id="ProPhone" name="ProPhone">
+                </div>
+                <div class="input_t">
+                    수강 기간 : <input type="date" id="LetStart" name="LetStart"> ~ <input type="date" id="LetClose" name="LetClose">
+                </div>
+                <div class="input_t">
+                    신청 기간 : <input type="date" id="ApplyStart" name="ApplyStart"> ~ <input type="date" id="ApplyClose" name="ApplyClose">
+                </div>
+            </div>
+        </div>
+        <div class="cont3">
+            <p>학생수 제한</p>
+            최대 : <input type="text" id="SCnt" name="SCnt"> 명
+        </div>
+    </div>
+    <div class="in_con2">
+        <div class="insert_table_title">
+            <p>◉ </p>
+            <p>수업 목표</p>
+        </div>
+        <textarea name="LecPurpose" id="LecPurpose" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+    </div>
+    <div class="in_con3">
+        <div class="insert_table_title">
+            <p>◉ </p>
+            <p>수업 평가 방법</p>
+        </div>
+        <div class="con3_c">
+            <div class="con3_con">
+                <p class="con3_t">출석</p>
+                <input type="text" id="AppCheck" name="AppCheck" >
+            </div>
+            <div class="con3_con">
+                <p class="con3_t">과제</p>
+                <input type="text" id="AppTask" name="AppTask">
+            </div>
+            <div class="con3_con">
+                <p class="con3_t">중간고사</p>
+                <input type="text" id="AppMiddle" name="AppMiddle">
+            </div>
+            <div class="con3_con">
+                <p class="con3_t">기말고사</p>
+                <input type="text" id="AppLast" name="AppLast" >
+            </div>
+        </div>
+    </div>
+    <div class="btn_box">
+        <button type="submit" class="sum_btn" disabled>강의 등록</button>
+    </div>
+    </form>
+</div>
+<script src="/static/js/PinsertLecture.js"></script>
+</body>
+
+</html>

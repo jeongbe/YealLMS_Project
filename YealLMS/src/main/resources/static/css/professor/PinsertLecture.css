@@ -1,0 +1,150 @@
+.inser_table{
+    /* display: flex; */
+    position:relative;
+    /* bottom:350px; */
+    top: 50px;
+    left: 401px;
+    width:1200px;
+}
+
+.insert_table_title p:first-child {
+    color: orange;
+    margin-right: 5px;
+}
+
+.insert_table_title{
+    display: flex;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tt{
+    display: flex;
+    background-color: #c69774;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 50px;
+}
+
+.in_con1{
+    border: 1px solid #c9c4c4;
+    background-color: rgb(240, 238, 233);
+}
+
+.cont1 ,.cont2{
+    /* height: 100px; */
+    display: inline-grid;
+    /* background-color: aquamarine; */
+}
+
+.input_t{
+    display: flex;
+    /* background-color: azure; */
+    width: 380px;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.input_t input{
+    margin-left: 10px;
+}
+
+.cont1{
+    margin-left: 15%;
+    width: 430px;
+    border-right: 1px solid #c9c4c4;
+    /* height: auto; */
+}
+
+.cont2{
+    margin-left: 10%;
+}
+
+.tx{
+    margin-left: 25px;
+}
+
+.tx2 {
+    margin-left: 47px;
+}
+
+.tx3{
+    margin-left: 28px;
+}
+
+.cont3{
+    margin-top: 20px;
+    border-top: 1px solid #c9c4c4;
+    padding-left: 2%;
+    font-size: 22px;
+}
+
+.cont3 p{
+    margin-top: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.cont3 input{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.in_con2 textarea{
+    /* border: none; */
+    width: 100%;
+    border: 1px solid #c9c4c4;
+    resize: none;
+}
+
+.con3_con{
+    display: flex;
+    font-size: 20px;
+    height: 50px;
+}
+
+.con3_con input{
+    /* margin-top: 20px; */
+    display: inline;
+    margin-left: 10px;
+    /* justify-content: center; */
+    align-items: center;
+    height: 30px;
+}
+
+.con3_t{
+    display: flex;
+    background-color: #c69774;
+    width: 100px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.btn_box {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: blanchedalmond; */
+}
+
+button{
+    background-color: #c69774;
+    border: 1px solid #c9c4c4;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.con3_c{
+    margin-top:40px;
+}
