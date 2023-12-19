@@ -23,19 +23,32 @@
         </div>
         <div class="cc">
             <div class="cont1">
+
+<!--                <input type="text"  th:value="${professor.pro_num}" name="ProNum">-->
+
                 <div class="input_t">
                     교과목 명 : <input type="text" id="LecName" name="LecName">
                 </div>
                 <div class="input_t tx">
-                    교수명 :   <input type="text" id="ProName" name="ProName">
+                    교수명 :   <input type="text" id="ProName" name="ProName" th:value="${proName}">
                 </div>
+<!--                <select th:each="nameList : ${ProNameList}" class="input_t tx" name="ProName" id="ProName">-->
+<!--                    <option value="profname" th:text="${nameList.pro_name}"></option>-->
+<!--                </select>-->
+<!--                <div class="input_t tx">-->
+<!--                    교수 선택하기 :-->
+<!--                <select   name="ProName" id="ProName">-->
+<!--                    <option value="교수선택">교수 선택</option>-->
+<!--                    <option th:value="${nameList.pro_name}"  th:each="nameList : ${ProNameList}" th:text="${nameList.pro_name}" ></option>-->
+<!--                </select>-->
+<!--                </div>-->
                 <div class="input_t tx2">
                     학점 : <input type="text" id="LecCredit" name="LecCredit">
                 </div>
             </div>
             <div class="cont2">
                 <div class="input_t tx3" >
-                    연락처 : <input type="text" id="ProPhone" name="ProPhone">
+                    연락처 : <input type="text" id="ProPhone" name="ProPhone" th:value="${proPhone}">
                 </div>
                 <div class="input_t">
                     수강 기간 : <input type="date" id="LetStart" name="LetStart"> ~ <input type="date" id="LetClose" name="LetClose">
