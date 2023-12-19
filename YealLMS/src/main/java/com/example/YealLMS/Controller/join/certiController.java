@@ -75,7 +75,8 @@ public class certiController {
             if (student != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("student",student);
-                return  "redirect:/student/login/main/" + form.getStunum();
+                model.addAttribute("student", student);
+                return  "student/stuMain";
             }
             //정보가 일치하지 않는다면 에러메세지를 띄어줌
             else {
