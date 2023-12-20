@@ -1,0 +1,82 @@
+.line{
+    width: 1100px;
+    height: 3px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #808080;
+    /* background-color: aqua; */
+}
+
+.content_box{
+    position: relative;
+    margin-left: 20%;
+    bottom: 320px;
+}
+
+.title_box{
+    /* background-color: aqua; */
+    width: 1100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_box p {
+    font-size: 30px;
+}
+
+.l_h_t{
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.lecture_list_box{
+    height: 40px;
+    width: 1100px;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #808080;
+}
+
+.l{
+    display: flex;
+    /* background-color: aqua; */
+    height: 40px;
+    width: 250px;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.l2{
+    width: 100px;
+}
+
+.l3{
+
+    border-bottom: 1px solid #808080;
+}
+
+.l4{
+    width: 500px;
+}
+
+.lecture_list_box2{
+    height: 40px;
+    width: 1100px;
+    display: flex;
+    justify-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button{
+    background-color: #c69774;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 130px;
+    font-size: 20px;
+    height: 40px;
+}

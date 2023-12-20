@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/professor/PlectureD.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="content_box">
+    <div class="title_box">
+        <p>온라인 강의</p>
+        <p th:text="${lecCode}"></p>
+        <a th:href="@{/pro/Detail/page/{lecCode}(lecCode=${lecCode})}">강의 등록</a>
+
+
+    </div>
+    <div class="line"></div>
+    <!-- 강의 헤더 제목 데이터 받는곳 -->
+    <p class="l_h_t">강의 제목</p>
+    <div class="lecture_list_box">
+        <p class="l l2">주차</p>
+        <p class="l l4">강의 주제</p>
+        <p class="l">출석 여부</p>
+        <p class="l">마감일</p>
+        <p class="l">과제</p>
+    </div>
+<!--    th:onclick="'javascript:location.href=&quot;/pro/video/' + ${Llist.lec_week} + '&quot;'"-->
+    <div class="lecture_list_box2" th:each="Llist : ${LList}" >
+        <p class="l l2 l3 lecWeek" th:text="${Llist.lec_week}"></p>
+        <p class="l l3 l4" th:text="${Llist.lec_title}"></p>
+        <p class="l l3" th:text="${Llist.lec_check}"></p>
+        <p class="l l3" th:text="${Llist.lec_close}"></p>
+        <p class="l l3" th:text="${Llist.lec_task}"></p>
+        <p class="lecCode" style="display:none;" th:text="${Llist.lec_code}"></p>
+    </div>
+</div>
+</body>
+<script>
+    let govideo = document.querySelector('.lecture_list_box2');
+
+    govideo.onclick = () => {
+        let lecCode = document.querySelector('.lecCode').textContent;
+        let lecWeek = document.querySelector('.lecWeek').textContent;
+        let url = "/pro/video/" + lecCode +"/"+  lecWeek;
+
+        window.open(url, '_blank', 'width=300,height=300');
+    }
+</script>
+
+</html>

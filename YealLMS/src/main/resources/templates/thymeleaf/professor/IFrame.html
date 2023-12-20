@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의 동영상</title>
+    <style>
+        iframe{
+            width : 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+        <iframe th:src="@{'http://192.168.2.3/images/a/' + ${video.lec_video}}" frameborder="0">
+        </iframe>
+
+
+</body>
