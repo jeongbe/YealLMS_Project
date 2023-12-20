@@ -163,6 +163,7 @@ main{
     height: 40px;
     text-align: center;
     font-size: large;
+    display:flex;
 
 }
 
@@ -187,6 +188,10 @@ main{
     height: 40px;
     background-color: #c69774;
 
+}
+
+.date_text{
+margin-left:60px;
 }
 
 

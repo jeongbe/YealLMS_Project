@@ -85,7 +85,6 @@ public class certiController {
                 return "join,login/login";
 
             }
-
         }
         else {
             //교수 레파진토리에서 비교

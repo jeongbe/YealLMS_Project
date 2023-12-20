@@ -1,8 +1,13 @@
 package com.example.YealLMS.Controller.Student;
 
+import com.example.YealLMS.DTO.Student.ApplyForm;
 import com.example.YealLMS.DTO.Student.ChangePassForm;
 import com.example.YealLMS.DTO.Student.MyinfoChageForm;
 import com.example.YealLMS.Entity.Join.student;
+import com.example.YealLMS.Entity.LectureHeader;
+import com.example.YealLMS.Entity.Student.ApplyLecture;
+import com.example.YealLMS.Repository.LectureRepository;
+import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -20,6 +29,10 @@ public class StudentController {
 
     @Autowired
     Studentrepository studentrepository;
+    @Autowired
+    LectureRepository lectureRepository;
+    @Autowired
+    ApplyLectureRepository applyLectureRepository;
 
     //메인페이지 세션전달
     @GetMapping("/student/login/main")
@@ -134,6 +147,20 @@ public class StudentController {
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);
 
+         //학생이 신청한 수강신청 정보 가져오기
+         ArrayList<ApplyLecture> applyLecture = applyLectureRepository.applylist(student.getStu_num());
+
+
+        // 수강신청 정보의 강의코드를 가져와서 강의 리스트를 뿌려줍니다.
+        // 수강신청 정보도 여러개 뿌려줘야할 정보도 여러개 이므로 각각 인덱스마다 조회를 하기위해 for문으로 반복을 돌린다.
+        ArrayList<LectureHeader> lectureHeaderArrayList = new ArrayList<>();
+        for (ApplyLecture apply : applyLecture) {
+            lectureHeaderArrayList.addAll(lectureRepository.leclist(apply.getLec_code()));
+        }
+
+        //정보를 모델화 하기
+         model.addAttribute("lectureHeaderArrayList", lectureHeaderArrayList);
+
 
         return "student/leclist";
     }
@@ -147,6 +174,11 @@ public class StudentController {
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);
 
+        //등록된 강의 정보 불러오기
+        ArrayList<LectureHeader> lectureHeaders = lectureRepository.lecapp();
+        model.addAttribute("lectureHeaders", lectureHeaders);
+
+
         return "student/lecapp";
     }
 
@@ -158,7 +190,66 @@ public class StudentController {
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);
 
-
         return "student/allnot";
+    }
+
+
+    //수강신청하는 매핑
+    @GetMapping("/student/apply/lecture")
+    public String applec(HttpSession session, Model model, ApplyForm form){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //이미 신청한 수강인지 가져오기
+        Long stunum = applyLectureRepository.bringstu(form.getLeccode());
+
+        //수강한 신청이 아니라면 수강신청이 완료됨
+        if (stunum == null){
+
+        //엔티티로 변환후 수강신청 테이블에 저장
+        ApplyLecture applyLecture = form.toEntity();
+        applyLectureRepository.save(applyLecture);
+
+        //성공 메세지 띄어주기
+        String sucess = "강의 신청이 완료되었습니다";
+        model.addAttribute("sucess", sucess);
+
+        //신청한 강의에 학점이 추가되어 업데이트 됨
+            //현재 학생의 수강중이 학점 가져오기
+            int credit = student.getStu_credit();
+            //신청한 강의의 학점가져오기
+            int leccredit = lectureRepository.brcredit(form.getLeccode());
+            //수강중인 학생의 학점과 새로 신청한 학점을 더해주기
+            int appcredit = credit + leccredit;
+
+            //더해진 학점을 학생 정보로 업데이트
+            //최대 수강 학점이 30학점 이므로 30을 넘어가면 취소되도록 if 작성
+            if (appcredit<=30) {
+                student.setStu_credit(appcredit);
+                studentrepository.save(student);
+                return "redirect:/student/login/main/student/info/leclist?sucess=true";
+            }
+            //최대 수강신청이 30을 넘는다면 띄어주는 오류 메세지
+            else {
+                
+                String maxcredit = "최대 수강학점은 30입니다.";
+                model.addAttribute("maxcredit", maxcredit);
+                return "redirect:/student/login/main/lecapp?maxcredit=true";
+            }
+
+
+        }
+        //이미 신청한 강의라면 에러메세지를 띄어줌
+        else {
+            String error = "이미 신청한 강의 입니다";
+            model.addAttribute("error", error);
+
+            return "redirect:/student/login/main/lecapp?error=true";
+
+        }
+
+
     }
 }

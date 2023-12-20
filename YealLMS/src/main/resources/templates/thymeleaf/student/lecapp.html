@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/static/css/student/lecapp.css">
-
 </head>
 
 <body>
@@ -33,19 +32,33 @@
             <div class="person">정원</div>
             <div class="apply">수강신청</div>
         </div>
-        <div class="lecinfo_content">
-            <div class="leccodeC">SQ1525</div>
-            <div class="lecnameC">C언어</div>
-            <div class="pronameC">홍길동</div>
-            <div class="creditC">3학점</div>
-            <div class="lecdateC">2017-09-09 ~ 2017.12.12</div>
-            <div class="personC">30</div>
-            <div class="applyC"><button class="apply_btn">신청</button></div>
+
+        <div th:each="lectureinfo : ${lectureHeaders}">
+            <form method="get" action="/student/apply/lecture">
+                <div class="lecinfo_content">
+            <input type="text" style="display:none;" name="stunum" th:value="${student.stu_num}">
+            <div class="leccodeC">
+                <p th:text="${lectureinfo.lec_code}"></p>
+                <input type="text" style="display:none;" name="leccode" th:value="${lectureinfo.lec_code}">
+            </div>
+            <div class="lecnameC"><p th:text="${lectureinfo.lec_name}"></p></div>
+            <div class="pronameC"><p th:text="${lectureinfo.pro_name}"></p></div>
+            <div class="creditC"><p th:text="${lectureinfo.lec_credit}"></p></div>
+            <div class="lecdateC"><p th:text="${lectureinfo.let_start}" class="date_text"></p> ~ <p th:text="${lectureinfo.let_close}"></p></div>
+            <div class="personC"><p th:text="${lectureinfo.s_cnt}"></p></div>
+            <div class="applyC"><button type="submit" class="apply_btn">신청</button></div>
+                </div>
+            </form>
         </div>
         <hr>
     </div>
 </main>
-
+<script th:if="${param.maxcredit}" type="text/javascript">
+    alert('수강중인 학점이 30을 넘을수 없습니다.');
+</script>
+<script th:if="${param.error}" type="text/javascript">
+    alert('이미 신청한 강의입니다.');
+</script>
 
 </body>
 
