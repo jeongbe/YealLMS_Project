@@ -51,7 +51,7 @@ public class StudentController {
 
     //나의 정보를 뿌려주는 페이지
     @GetMapping("/student/login/main/student/info/{stunum}")
-    public String stuinfo(@PathVariable Long stunum, HttpSession session, Model model){
+    public String stuinfo(HttpSession session, Model model){
         //로그인 세션
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);

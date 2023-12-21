@@ -42,9 +42,6 @@ public class PinsertLecture {
     LectureListRepository lectureListRepository;
 
     @Autowired
-    ProfessorRepository professorRepository;
-
-    @Autowired
     ProNamsRepository proNamsRepository;
 
     @Autowired
@@ -103,7 +100,7 @@ public class PinsertLecture {
         return "redirect:/pro/lectureList";
     }
 
-    //안쓰는거
+    //교수 메인 페이지
     @GetMapping("/pmain")
     public String PMain(HttpSession session,Model model){
 
@@ -116,24 +113,35 @@ public class PinsertLecture {
 
     //강의 디테일 등록 페이지
     @GetMapping("/lectureList/DetailList/{lec_code}")
-    public String DetailList(@PathVariable("lec_code")  String lecCode,Model model){
+    public String DetailList(HttpSession session,@PathVariable("lec_code")  String lecCode,Model model){
+        Professor professor = (Professor) session.getAttribute("professor");
+//        log.info(professor.toString());
+        model.addAttribute("professor", professor);
 
 //        log.info(String.valueOf(lecCode));
         model.addAttribute("lecCode",lecCode);
 
-
+        //소 강의 리스트
         List<LectureDetail> LDList = lectureDetailRepository.LDitailList(lecCode);
-        log.info(LDList.toString());
-
+//        log.info(LDList.toString());
         model.addAttribute("LList", LDList);
+
+        //해당 강의 신청한 학생 수
+        int stuCount = lectureRepository.StuCount(Integer.parseInt(lecCode));
+//        log.info(String.valueOf(stuCount));
+        model.addAttribute("stuCount",stuCount);
+
 
         return "professor/PlectureD";
     }
 
 
     @GetMapping("/Detail/page/{lec_code}")
-    public String DetailLectureInsert(Model model,@PathVariable("lec_code")  String lecCode){
+    public String DetailLectureInsert(HttpSession session,Model model,@PathVariable("lec_code")  String lecCode){
 
+        Professor professor = (Professor) session.getAttribute("professor");
+//        log.info(professor.toString());
+        model.addAttribute("professor", professor);
 //        log.info(String.valueOf(lecCode));
         model.addAttribute("lecCode",lecCode);
 
@@ -144,13 +152,15 @@ public class PinsertLecture {
 
 
     @PostMapping("/insert/detail/{lec_code}")
-    public String DInsert(Model model, @PathVariable("lec_code")  String lecCode, LectureDetailForm form,
+    public String DInsert(HttpSession session,Model model, @PathVariable("lec_code")  String lecCode, LectureDetailForm form,
                           @RequestParam(value = "LecVideo",required = false)MultipartFile file1){
-
-        log.info(String.valueOf(lecCode));
+        Professor professor = (Professor) session.getAttribute("professor");
+//        log.info(professor.toString());
+        model.addAttribute("professor", professor);
+//        log.info(String.valueOf(lecCode));
         model.addAttribute("lecCode",lecCode);
 
-        log.info("file1 이름 : " + file1.toString());
+//        log.info("file1 이름 : " + file1.toString());
 
 //        log.info("메핑 연결");
 
@@ -168,14 +178,15 @@ public class PinsertLecture {
             return "";
         }
 
-        log.info(form.toString());
+//        log.info(form.toString());
 
         LectureDetail test = form.toEntity();
-        log.info(test.toString());
+//        log.info(test.toString());
         //큰강의 코드 넣어줌
         test.setLec_code(Integer.parseInt(lecCode));
+        test.setLec_count("0");
         test.setLec_check("미결");
-        test.setLec_task("없음");  //소강의 당 과제 유뮤 확인
+        test.setLec_task("과제등록");  //소강의 당 과제 유뮤 확인
         lectureDetailRepository.save(test);
 
 
@@ -184,7 +195,10 @@ public class PinsertLecture {
 
     //동영상 띄우기
     @GetMapping("/video/{lec_code}/{lec_week}")
-    public String viewVideo(Model model,@PathVariable("lec_week")  String lecWeek,@PathVariable("lec_code")  String lecCode){
+    public String viewVideo(HttpSession session,Model model,@PathVariable("lec_week")  String lecWeek,@PathVariable("lec_code")  String lecCode){
+        Professor professor = (Professor) session.getAttribute("professor");
+//        log.info(professor.toString());
+        model.addAttribute("professor", professor);
 
         LectureDetail showView = lectureDetailRepository.showView(lecCode,lecWeek);
         log.info(showView.toString());

@@ -33,5 +33,11 @@ public interface LectureRepository extends JpaRepository<LectureHeader,Integer> 
             "AND ( lec_name LIKE %:searchname% or pro_name LIKE %:searchname%) ", nativeQuery = true)
     ArrayList<LectureHeader> searchlist(@Param("searchname") String searchname);
 
-
+	
+    @Query(value = "select count(*)\n" +
+            "from lheader h\n" +
+            "join apply_lec a\n" +
+            "on h.lec_code = a.lec_code\n" +
+            "where h.lec_code = :lecCode" , nativeQuery = true)
+    int StuCount(@Param("lecCode") int lecCode);
 }

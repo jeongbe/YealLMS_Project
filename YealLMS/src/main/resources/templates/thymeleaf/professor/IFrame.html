@@ -4,16 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/layout/Pheader.css">
     <title>강의 동영상</title>
     <style>
         iframe{
-            width : 300px;
-            height: 300px;
+            width : 1100px;
+            height: 500px;
+        }
+
+        .header_title_box{
+            height:130px;
         }
     </style>
 </head>
 
 <body>
+    <div class="header_box">
+        <div class="header_title_box">
+            <img src="/static/images/YALELogo.png" />
+            <a href="#" class="s_title">예일대학교
+            </a>
+        </div>
+    </div>
+        제목: <p th:text="${video.lec_title}"></p>
         <iframe th:src="@{'http://192.168.2.3/images/a/' + ${video.lec_video}}" frameborder="0">
         </iframe>
 

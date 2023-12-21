@@ -12,7 +12,7 @@
     <div class="header_title_box">
         <img src="/static/images/YALELogo.png" />
         <a
-         href="#" class="s_title"
+         href="/pro/pmain" class="s_title"
         >예일대학교
             <p>LMS</p></a
         >
@@ -22,7 +22,8 @@
         <a class="last" href="#">내 강의</a>
         <div class="user_info">
             <img src="" alt="" />
-            <p>OOO교수님 반갑습니다!</p>
+            <p th:text="${professor.pro_name}"></p>
+            <p>교수님 반갑습니다!</p>
         </div>
     </div>
 </div>
@@ -42,7 +43,7 @@
             수업활동
         </div>
         <a href="">> 온라인 강의</a>
-        <a href="">> 과제</a>
+        <a th:href="@{/pro/asslist/{proNum} (proNum=${professor.pro_num})}">> 과제</a>
     </div>
     <div class="con3">
         <div>

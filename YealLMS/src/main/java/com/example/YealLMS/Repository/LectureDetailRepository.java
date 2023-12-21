@@ -35,6 +35,9 @@ public interface LectureDetailRepository extends JpaRepository<LectureDetail,Int
             "and lec_week = :lecWeek" , nativeQuery = true)
     ArrayList<LectureDetail> showViewlist(@Param("lecCode") int lecCode, @Param("lecWeek") int lecWeek);
 
-
+    @Query(value = "select *\n" +
+            "from lecturedetail\n" +
+            "where delec_code= :delecCode", nativeQuery = true)
+    LectureDetail showLecWeek(@Param("delecCode") String delecCode);
 
 }

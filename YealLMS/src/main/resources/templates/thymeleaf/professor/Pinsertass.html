@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/professor/Pinsertass.css">
+    <title>Document</title>
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="container">
+    <p class="title_text">과제 등록</p>
+    <div class="line"></div>
+    <div class="title_box">
+        <p class="" th:text="${getWeek.lec_week}">주차 </p> -
+        <p class="" th:text="${getWeek.lec_title}"></p>
+    </div>
+    <form method="post" action="/pro/ass/data" enctype="multipart/form-data">
+        <input style="display:none" name="DelecCode" th:value="${getWeek.delec_code}">
+        <input style="display:none" name="LecCode" th:value="${getWeek.lec_code}">
+        <div class="insert_box">
+            <div class="input_box">
+    <!--            value로 가져오기-->
+                <p>주차</p>
+                <input type="text" name="LecWeek"  th:value="${getWeek.lec_week}">
+            </div>
+            <div class="input_box">
+                <p>과제 제목</p>
+                <input type="text" name="AssTitle" id="AssTitle">
+            </div>
+            <div class="input_box">
+                <p>시작일</p>
+                <input type="date" name="AssStart" id="AssStart">
+            </div>
+            <div class="input_box">
+                <p>마감일</p>
+                <input type="date" name="AssClose" id="AssClose">
+            </div>
+            <div class="input_box">
+                <p>과제 만점</p>
+                <input type="text" name="AssPerfect" id="AssPerfect">
+            </div>
+            <div class="input_box">
+                <p>첨부 파일</p>
+                <input type="file" name="AssFile" id="AssFile">
+            </div>
+            <div class="input_box last">
+                <p>내용</p>
+                <textarea name="AssContent" id="AssContent" cols="30" rows="10"></textarea>
+            </div>
+            <div class="btn_box">
+                <button type="submit">등록하기</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

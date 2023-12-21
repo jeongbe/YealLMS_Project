@@ -1,0 +1,129 @@
+.container {
+    margin-left: 20%;
+    margin-top: 10%;
+    position:relative;
+    bottom:600px;
+}
+
+.title_text {
+    /* background-color: aqua; */
+    width: 1100px;
+    height: 50px;
+}
+
+.title_text p {
+    font-size: 30px;
+}
+
+.bx1 {
+    display: flex;
+    /* background-color: aqua; */
+    width: 1100px;
+    height: 40px;
+    font-size: 22px;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #c8c3c3;
+}
+
+.text1 {
+    background-color: #c69774;
+    height: 40px;
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.text_box2 {
+    display: flex;
+}
+
+.text_box2 p {
+    margin-right: 10px;
+
+}
+
+.assList {
+    margin-top: 40px;
+    font-size: 20px;
+    width: 1100px;
+    border-top: 1px solid #c8c3c3;
+    border-left: 1px solid #c8c3c3;
+    border-right: 1px solid #c8c3c3;
+}
+
+.day {
+    display: flex;
+    width: 250px;
+}
+
+.assList_title {
+    display: flex;
+    width: 1100px;
+    border-bottom: 1px solid #c8c3c3;
+    height: 30px;
+}
+
+.assList_title p,
+.day p {
+    width: 220px;
+    display: flex;
+    /* background-color: aqua; */
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.l {
+    border-right: 1px solid #c8c3c3;
+}
+
+.head {
+    background-color: antiquewhite;
+}
+
+
+
+.click {
+    --padding: 1.5rem;
+    /* font-size: 2em; */
+    position: relative;
+    cursor: pointer;
+    /* background-color: aqua; */
+}
+
+/* .click::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25px;
+    height: 3px;
+    width: calc(100%);
+    background: #c69774;
+
+}
+
+@media (hover) {
+    .click:hover::after {
+        transform: scaleX(1);
+        margin-left: 0;
+    }
+
+    .click::after {
+        transform: scaleX(0);
+        margin-left: 50%;
+        transform-origin: left;
+        transition: transform 500ms ease, margin-left .5s ease;
+    }
+} */
+
+.click:hover {
+    box-shadow: 1px 1px 20px #ddd;
+    color: #c69774;
+}
+
+.a {
+    width: 200px;
+}

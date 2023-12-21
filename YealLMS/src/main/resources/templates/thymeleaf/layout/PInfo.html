@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="headerInfo">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/layout/style.css" />
     <link rel="stylesheet" href=/static/css/layout/Pheader.css />
     <link rel="stylesheet" href="/static/css/layout/InfoContent.css" />
     <title>Document</title>
-</head>
+
 <body>
 <div class="header_box">
     <div class="header_title_box">
         <img src="/static/images/YALELogo.png" />
-        <a href="#" class="s_title"
+        <a href="/pro/pmain" class="s_title"
         >예일대학교
             <p>LMS</p></a
         >
@@ -22,7 +22,8 @@
         <a class="last" href="#">내 강의</a>
         <div class="user_info">
             <img src="" alt="" />
-            <p>OOO교수님 반갑습니다!</p>
+            <p th:text="${professor.pro_name}"></p>
+            <p>교수님 반갑습니다!</p>
         </div>
     </div>
 </div>
@@ -32,4 +33,5 @@
     <a class="L" href="">진행중인 강의</a>
 </div>
 </body>
+</header>
 </html>

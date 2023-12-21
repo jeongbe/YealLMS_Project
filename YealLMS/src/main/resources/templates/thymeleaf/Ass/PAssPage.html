@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/ass/PAssPage.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="container">
+    <div class="title_text">
+        <p>과제 목록</p>
+    </div>
+    <div class="bx1">
+        <div class="text1">
+            <p>현황</p>
+        </div>
+        <div class="text_box2">
+            <p>종료:</p>
+            <p> 0</p>
+            <p>개</p>
+            <p>/</p>
+            <p>평가완료:</p>
+            <p>0</p>
+            <p>개</p>
+        </div>
+    </div>
+    <div class="assList">
+        <div class="assList_title head">
+            <p class="l">주차</p>
+            <p  class="l">과제 제목</p>
+            <div class="day l">
+                <p>시작일</p>
+                <p>~</p>
+                <p>마감일</p>
+            </div>
+            <p  class="l">제출 인원</p>
+            <p>평가인원</p>
+        </div>
+        <div class="assList_title ">
+            <p  class="l">주차</p>
+            <p  class="l click">과제 제목</p>
+            <div class="day l">
+                <p>시작일</p>
+                <p>~</p>
+                <p>마감일</p>
+            </div>
+            <p  class="l">제출 인원</p>
+            <p>평가인원</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
