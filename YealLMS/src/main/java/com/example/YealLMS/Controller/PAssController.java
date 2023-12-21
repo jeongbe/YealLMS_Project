@@ -90,8 +90,9 @@ public class PAssController {
 
         log.info(proNum);
 
-        List<Assignment> AssList = assRepository.AssList(String.valueOf(professor.getPro_num()));
+        List<Assignment> AssList = assRepository.AssList(proNum);
         log.info(AssList.toString());
+        model.addAttribute("AssList",AssList);
 
         return "Ass/PAssPage";
     }

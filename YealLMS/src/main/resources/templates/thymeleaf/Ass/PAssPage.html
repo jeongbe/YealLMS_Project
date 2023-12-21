@@ -40,16 +40,16 @@
             <p  class="l">제출 인원</p>
             <p>평가인원</p>
         </div>
-        <div class="assList_title ">
-            <p  class="l">주차</p>
-            <p  class="l click">과제 제목</p>
-            <div class="day l">
-                <p>시작일</p>
+        <div class="assList_title " th:each="AssLists : ${AssList}">
+            <p  class="l" th:text="${AssLists.lec_week}">주차</p>
+            <p  class="l click" th:text="${AssLists.ass_title}">과제 제목</p>
+            <div class="day l" >
+                <p th:text="${AssLists.ass_start}">시작일</p>
                 <p>~</p>
-                <p>마감일</p>
+                <p th:text="${AssLists.ass_close}">마감일</p>
             </div>
-            <p  class="l">제출 인원</p>
-            <p>평가인원</p>
+            <p  class="l" th:text="${AssLists.ass_cnt}">제출 인원</p>
+            <p th:text="${AssLists.app_cnt}">평가인원</p>
         </div>
     </div>
 </div>

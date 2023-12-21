@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface AssRepository  extends JpaRepository<Assignment, Integer> {
 
-    @Query(value = "select *\n" +
+    @Query(value = "select a.*\n" +
             "from assignment a\n" +
             "join professor p \n" +
             "on a.pro_num = p.pro_num\n" +

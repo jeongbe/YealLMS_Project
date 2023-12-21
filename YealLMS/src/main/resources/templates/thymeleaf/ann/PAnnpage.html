@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/ann/PAnnpage.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="container">
+    <p class="title_text">공지사항</p>
+    <div class="line"></div>
+    <div class="page_info">
+        <div class="info">
+            <p>게시물 개수</p>
+            <p>,</p>
+            <p> 페이지 정보</p>
+        </div>
+        <div class="inserBtn">
+            <button onclick="location.href='/pro/insert/ann'">등록하기</button>
+        </div>
+    </div>
+    <div class="ann_container">
+        <div class="header_box2 co l">
+            <p>번호</p>
+            <p>제목</p>
+            <p>작성자</p>
+            <p>등록일</p>
+            <p>조회</p>
+        </div>
+        <div class="header_box2">
+            <p>번호</p>
+            <p>제목</p>
+            <p>작성자</p>
+            <p>등록일</p>
+            <p>조회</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
