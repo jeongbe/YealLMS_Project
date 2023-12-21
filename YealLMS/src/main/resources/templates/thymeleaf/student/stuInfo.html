@@ -29,7 +29,7 @@
             <hr class="nomal_info_line">
             <div class="studeinfo_form">
                 <div class="deinfo_line1">
-                    <div class="border_line1">구분 :<input type="text" class="info_input" readonly></div>
+                    <div class="border_line1">구분 :<input type="text" class="info_input" readonly placeholder="학생"></div>
                     <div class="border_line2">학번 :<input type="text" class="info_input" readonly th:value = ${student.stu_num}></div>
                     <div class="border_line3">전공 :<input type="text" class="info_input" readonly th:value= ${student.stu_major}></div>
                 </div>
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="stu_addinfo_form">
-        <h2 class="stu_addinfo_title">개인 프로필</h2>
+        <h2 class="stu_addinfo_title"></h2>
         <h3>블로그 주소</h3> <input type="text"  readonly class="stu_blog_link" th:value = ${student.stu_blog}>
     </div>
     <div class="change_form">
@@ -56,7 +56,5 @@
         <a th:href="@{changePass/{stunum}(stunum= ${student.stu_num})}"><button class="pass_change">비밀번호 변경</button></a>
     </div>
 </main>
-
 </body>
-
 </html>

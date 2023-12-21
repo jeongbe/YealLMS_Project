@@ -43,9 +43,18 @@ section{
 
 }
 
-#last_lec_form, #last_lec_form2{
-   text-align: center;
+#last_lec_form1, #last_lec_form11{
    margin-top: 20px;
+   display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#last_lec_form, #last_lec_form2{
+   margin-top: 20px;
+   display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .not_title{

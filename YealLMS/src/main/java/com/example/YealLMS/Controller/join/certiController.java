@@ -4,6 +4,9 @@ import com.example.YealLMS.DTO.JoinForm.StuCertiForm;
 import com.example.YealLMS.DTO.JoinForm.StuJoinForm;
 import com.example.YealLMS.Entity.Join.Professor;
 import com.example.YealLMS.Entity.Join.student;
+import com.example.YealLMS.Entity.LectureDetail;
+import com.example.YealLMS.Repository.LectureDetailRepository;
+import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
 import com.example.YealLMS.Repository.studnet.ProfessorRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+
 @Controller
 public class certiController {
 
@@ -22,6 +27,12 @@ public class certiController {
     Studentrepository studentrepository;
     @Autowired
     ProfessorRepository professorRepository;
+
+    @Autowired
+    LectureDetailRepository lectureDetailRepository;
+
+    @Autowired
+    ApplyLectureRepository applyLectureRepository;
 
 
      //학번 인증 매핑
@@ -69,13 +80,32 @@ public class certiController {
         //학생이라면
         if (form.getStunum()<100000000){
             //학생 레포지토리에서 비교
-         student student = studentrepository.login(form.getStunum(),form.getStupass());
+            student student = studentrepository.login(form.getStunum(),form.getStupass());
 
             //정보가 일치한다면 세션 생성후 메인페이지 반환
             if (student != null){
                 HttpSession session = request.getSession();
                 session.setAttribute("student",student);
                 model.addAttribute("student", student);
+
+                //학생이 신청한 강의중 최신순으로 3개를 가져옵니다
+                ArrayList<Integer> lastlec = applyLectureRepository.lastlec(student.getStu_num());
+
+                //반복문을 돌려서 각 강의에대한 1주차 영상을 가져올것임
+                ArrayList<LectureDetail> showView = new ArrayList<>();
+                
+                for(int list : lastlec){
+                    showView.addAll(lectureDetailRepository.showViewlist(list,1));
+
+                    //3개씩 두줄로 표현되기 때문에 판단하기 위한 if문
+                    if (list < 4){
+                        model.addAttribute("video",showView);
+                    }
+                    else {
+                        model.addAttribute("video1",showView);
+                    }
+                }
+
                 return  "student/stuMain";
             }
             //정보가 일치하지 않는다면 에러메세지를 띄어줌
@@ -109,13 +139,31 @@ public class certiController {
 
     }
 
-    @GetMapping("/student/login/main/{stunum}")
-    public String stumain(@PathVariable Long stunum, Model model, HttpSession session){
+    //메인화면 새로고침 매핑
+    @GetMapping("/student/login/main/retry")
+    public String stumain(Model model, HttpSession session){
 
         student student = (student) session.getAttribute("student");
 
         model.addAttribute("student", student);
 
+        //학생이 신청한 강의중 최신순으로 3개를 가져옵니다
+        ArrayList<Integer> lastlec = applyLectureRepository.lastlec(student.getStu_num());
+
+        //반복문을 돌려서 각 강의에대한 1주차 영상을 가져올것임
+        ArrayList<LectureDetail> showView = new ArrayList<>();
+
+        for(int list : lastlec){
+            showView.addAll(lectureDetailRepository.showViewlist(list,1));
+
+            //3개씩 두줄로 표현되기 때문에 판단하기 위한 if문
+            if (list < 4){
+                model.addAttribute("video",showView);
+            }
+            else {
+                model.addAttribute("video1",showView);
+            }
+        }
 
         return "student/stuMain";
     }

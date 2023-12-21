@@ -15,10 +15,12 @@
         <div class="lec_app_title">
             강의 신청
         </div>
+        <form method="get" action="/student/login/main/lecapp/search">
         <div class="search_form">
-            <input type="text" class="search_box" placeholder="과목 or 교수명">
-            <button class="search_btn">조회</button>
+            <input type="text" class="search_box" placeholder="과목 or 교수명" name="searchname">
+            <button type="submit" class="search_btn">조회</button>
         </div>
+        </form>
     </div>
 </section>
 <main>
@@ -32,6 +34,7 @@
             <div class="person">정원</div>
             <div class="apply">수강신청</div>
         </div>
+        <hr>
 
         <div th:each="lectureinfo : ${lectureHeaders}">
             <form method="get" action="/student/apply/lecture">
@@ -49,8 +52,9 @@
             <div class="applyC"><button type="submit" class="apply_btn">신청</button></div>
                 </div>
             </form>
+            <hr>
         </div>
-        <hr>
+
     </div>
 </main>
 <script th:if="${param.maxcredit}" type="text/javascript">
@@ -58,6 +62,9 @@
 </script>
 <script th:if="${param.error}" type="text/javascript">
     alert('이미 신청한 강의입니다.');
+</script>
+<script th:if="${param.notfound}" type="text/javascript">
+    alert('일치하는 검색정보가 없습니다.');
 </script>
 
 </body>

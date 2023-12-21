@@ -16,21 +16,25 @@
         <input type="text" class="search_form"><button class="search_btn">검색</button>
     </div>
     <hr>
-    <div class="leclist_form" th:each="lectureHeaderArrayList : ${lectureHeaderArrayList}">
+    <div th:each="lectureHeaderArrayList : ${lectureHeaderArrayList}">
+        <div class="leclist_form">
         <div class="leclist_imageform">
             <img src="/image/lmslogo.png" class="lec_image">
         </div>
         <div>
-            <h3 th:text="${lectureHeaderArrayList.lec_name}"></h3>
+            <a th:href="@{leclist/{leccode}(leccode=${lectureHeaderArrayList.lec_code})}"><h3 th:text="${lectureHeaderArrayList.lec_name}"></h3>
             <div class="lec_info">
                 <p>신청기간 :</p>
                 <P th:text="${lectureHeaderArrayList.apply_start}"></p> ~ <p th:text="${lectureHeaderArrayList.apply_close}"></p>
                 <p class="season">운영기간 :</p>
                 <P th:text="${lectureHeaderArrayList.let_start}"></p> ~ <p th:text="${lectureHeaderArrayList.let_close}"></p>
             </div>
+            </a>
         </div>
+        </div>
+        <hr>
     </div>
-    <hr>
+
 </main>
 <script th:if="${param.sucess}" type="text/javascript">
     alert('강의 신청이 완료되었습니다 !!');

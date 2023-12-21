@@ -31,7 +31,6 @@ main{
 
 .delec_title{
     display: flex;
-    border: 1px solid black;
     height: 40px;
 }
 

@@ -12,6 +12,7 @@
 <header><div class="body_con" th:replace="~{layout/SContent :: SContent}"></div></header>
 <nav></nav>
 <main>
+
     <div class="delec_allform">
     <h2>강의 제목</h2>
     <hr>
@@ -22,19 +23,37 @@
             <div class="delec_att">출석여부</div>
             <div class="delec_close">마감일</div>
             <div class="delec_task">과제</div>
-
-        </div>
-        <div class="delec_content">
-            <div class="delec_weekC">1</div>
-            <div class="delec_nameC">오리엔테이션</div>
-            <div class="delec_attC">미결</div>
-            <div class="delec_closeC">2017.09.11</div>
-            <div class="delec_taskC">없음</div>
         </div>
         <hr>
+        <div th:each="lectureDetailArrayList : ${lectureDetailArrayList}">
+        <div class="delec_content">
+            <div class="delec_weekC"><p th:text="${lectureDetailArrayList.lec_week}"></p></div>
+            <div class="delec_nameC"><p th:text="${lectureDetailArrayList.lec_title}"></p></div>
+            <div class="delec_attC"><p th:text="${lectureDetailArrayList.lec_check}"></p></div>
+            <div class="delec_closeC"><p th:text="${lectureDetailArrayList.lec_close}"></p></div>
+            <p class="lecCode" style="display:none;" th:text="${lectureDetailArrayList.lec_code}"></p>
+            <p class="lecWeek" style="display:none;" th:text="${lectureDetailArrayList.lec_week}"></p>
+            <div class="delec_taskC">없음</div>
+        </div>
+            <hr>
+        </div>
+
     </div>
     </div>
+
 </main>
+
+<script>
+    let govideo = document.querySelector('.delec_content');
+
+    govideo.onclick = () => {
+        let lecCode = document.querySelector('.lecCode').textContent;
+        let lecWeek = document.querySelector('.lecWeek').textContent;
+        let url = "/pro/video/" + lecCode +"/"+  lecWeek;
+
+        window.open(url, '_blank', 'width=300,height=300');
+    }
+</script>
 
 </body>
 

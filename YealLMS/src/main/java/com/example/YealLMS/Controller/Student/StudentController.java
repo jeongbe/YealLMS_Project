@@ -1,11 +1,14 @@
 package com.example.YealLMS.Controller.Student;
 
+import com.example.YealLMS.DTO.SearchForm;
 import com.example.YealLMS.DTO.Student.ApplyForm;
 import com.example.YealLMS.DTO.Student.ChangePassForm;
 import com.example.YealLMS.DTO.Student.MyinfoChageForm;
 import com.example.YealLMS.Entity.Join.student;
+import com.example.YealLMS.Entity.LectureDetail;
 import com.example.YealLMS.Entity.LectureHeader;
 import com.example.YealLMS.Entity.Student.ApplyLecture;
+import com.example.YealLMS.Repository.LectureDetailRepository;
 import com.example.YealLMS.Repository.LectureRepository;
 import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
@@ -33,6 +36,8 @@ public class StudentController {
     LectureRepository lectureRepository;
     @Autowired
     ApplyLectureRepository applyLectureRepository;
+    @Autowired
+    LectureDetailRepository lectureDetailRepository;
 
     //메인페이지 세션전달
     @GetMapping("/student/login/main")
@@ -88,7 +93,6 @@ public class StudentController {
         if (form.getChblog() != ""){
             student.setStu_blog(form.getChblog());
         }
-
 
         studentrepository.save(student);
         model.addAttribute("student", student);
@@ -152,8 +156,8 @@ public class StudentController {
 
 
         // 수강신청 정보의 강의코드를 가져와서 강의 리스트를 뿌려줍니다.
-        // 수강신청 정보도 여러개 뿌려줘야할 정보도 여러개 이므로 각각 인덱스마다 조회를 하기위해 for문으로 반복을 돌린다.
         ArrayList<LectureHeader> lectureHeaderArrayList = new ArrayList<>();
+        // 수강신청 정보도 여러개 뿌려줘야할 정보도 여러개 이므로 각각 인덱스마다 조회를 하기위해 for문으로 반복을 돌린다.
         for (ApplyLecture apply : applyLecture) {
             lectureHeaderArrayList.addAll(lectureRepository.leclist(apply.getLec_code()));
         }
@@ -175,6 +179,7 @@ public class StudentController {
         model.addAttribute("student", student);
 
         //등록된 강의 정보 불러오기
+        //신청마감일이 지나지 않은 강의만 불러옴
         ArrayList<LectureHeader> lectureHeaders = lectureRepository.lecapp();
         model.addAttribute("lectureHeaders", lectureHeaders);
 
@@ -182,6 +187,41 @@ public class StudentController {
         return "student/lecapp";
     }
 
+    //검색하는 매핑
+    @GetMapping("/student/login/main/lecapp/search")
+    public String lecsearch(HttpSession session, Model model, SearchForm form){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //검색 내용에따라 해당하는 교수명or 과목명으로 조회하여 가져온다.
+        //신청마감일이 지나지않은 검색된 데이터만 조회함
+        ArrayList<LectureHeader> searchlec = lectureRepository.searchlist(form.getSearchname());
+        model.addAttribute("lectureHeaders",searchlec);
+
+
+        //아무검색어도 입력하지 않았을경우 그냥 페이지 새로고침이 된다
+        if (form.getSearchname() == ""){
+            return "redirect:/student/login/main/lecapp";
+        }
+        //검색창에 하나라도 입력했을시 검색조건 비교
+        else{
+
+        if (!searchlec.isEmpty()){
+
+        return "student/lecapp";
+
+        }
+        else {
+
+            String notfound = "일치하는 정보가 없습니다";
+            model.addAttribute("notfound",notfound);
+
+            return "redirect:/student/login/main/lecapp?notfound=true";
+        }
+        }
+    }
     //커뮤니티로 가는 매핑
     @GetMapping("/student/login/main/allnot")
     public String allnot(HttpSession session, Model model){
@@ -192,8 +232,6 @@ public class StudentController {
 
         return "student/allnot";
     }
-
-
     //수강신청하는 매핑
     @GetMapping("/student/apply/lecture")
     public String applec(HttpSession session, Model model, ApplyForm form){
@@ -203,15 +241,11 @@ public class StudentController {
         model.addAttribute("student", student);
 
         //이미 신청한 수강인지 가져오기
-        Long stunum = applyLectureRepository.bringstu(form.getLeccode());
+        ArrayList<ApplyLecture> stunum = applyLectureRepository.bringapp(student.getStu_num(),form.getLeccode());
 
         //수강한 신청이 아니라면 수강신청이 완료됨
-        if (stunum == null){
-
-        //엔티티로 변환후 수강신청 테이블에 저장
-        ApplyLecture applyLecture = form.toEntity();
-        applyLectureRepository.save(applyLecture);
-
+        if (stunum.isEmpty()){
+            
         //성공 메세지 띄어주기
         String sucess = "강의 신청이 완료되었습니다";
         model.addAttribute("sucess", sucess);
@@ -227,19 +261,23 @@ public class StudentController {
             //더해진 학점을 학생 정보로 업데이트
             //최대 수강 학점이 30학점 이므로 30을 넘어가면 취소되도록 if 작성
             if (appcredit<=30) {
+
+                //엔티티로 변환후 수강신청 테이블에 저장
+                ApplyLecture applyLecture = form.toEntity();
+                applyLectureRepository.save(applyLecture);
+                
+                //추가된 학점으로 업데이트
                 student.setStu_credit(appcredit);
                 studentrepository.save(student);
+
                 return "redirect:/student/login/main/student/info/leclist?sucess=true";
             }
             //최대 수강신청이 30을 넘는다면 띄어주는 오류 메세지
             else {
-                
                 String maxcredit = "최대 수강학점은 30입니다.";
                 model.addAttribute("maxcredit", maxcredit);
                 return "redirect:/student/login/main/lecapp?maxcredit=true";
             }
-
-
         }
         //이미 신청한 강의라면 에러메세지를 띄어줌
         else {
@@ -249,7 +287,22 @@ public class StudentController {
             return "redirect:/student/login/main/lecapp?error=true";
 
         }
-
-
     }
+    //강의 디테일로가는 매핑
+    @GetMapping("/student/login/main/student/info/leclist/{leccode}")
+    public String lecdetail(HttpSession session, Model model, @PathVariable int leccode){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //강의에 대한 세부정보 가져오기
+        ArrayList<LectureDetail> lectureDetailArrayList = lectureDetailRepository.deleclist(leccode);
+        //모델
+        model.addAttribute("lectureDetailArrayList",lectureDetailArrayList);
+
+        return "student/delec";
+    }
+
+
 }

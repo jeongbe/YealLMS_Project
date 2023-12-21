@@ -16,11 +16,19 @@ public interface ApplyLectureRepository extends CrudRepository<ApplyLecture, Lon
    ArrayList<ApplyLecture> applylist(@Param("stunum") Long stunum);
 
     //수강신청한 정보에 따른 학번가져오기
-    @Query(value = "SELECT stu_num\n" +
+    @Query(value = "SELECT *\n" +
             "FROM apply_lec\n" +
-            "WHERE lec_code = :leccode\n", nativeQuery = true)
+            "WHERE stu_num = :stunum\n" +
+            "AND lec_code =  :leccode ", nativeQuery = true)
+    ArrayList<ApplyLecture> bringapp(@Param("stunum") Long stunum,@Param("leccode") int leccode);
 
-    Long bringstu(@Param("leccode") int leccode);
+    //가장 최근에 신청한 강의 들고오기
+    @Query(value = "SELECT lec_code\n" +
+            "FROM apply_lec\n" +
+            "WHERE stu_num = :stunum\n" +
+            "order by app_num desc\n" +
+            "limit 3 ", nativeQuery = true)
+    ArrayList<Integer>lastlec(@Param("stunum") Long stunum);
 
 
 }
