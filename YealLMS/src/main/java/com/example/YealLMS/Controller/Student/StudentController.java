@@ -4,10 +4,12 @@ import com.example.YealLMS.DTO.SearchForm;
 import com.example.YealLMS.DTO.Student.ApplyForm;
 import com.example.YealLMS.DTO.Student.ChangePassForm;
 import com.example.YealLMS.DTO.Student.MyinfoChageForm;
+import com.example.YealLMS.Entity.Ass.Assignment;
 import com.example.YealLMS.Entity.Join.student;
 import com.example.YealLMS.Entity.LectureDetail;
 import com.example.YealLMS.Entity.LectureHeader;
 import com.example.YealLMS.Entity.Student.ApplyLecture;
+import com.example.YealLMS.Repository.AssRepository;
 import com.example.YealLMS.Repository.LectureDetailRepository;
 import com.example.YealLMS.Repository.LectureRepository;
 import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
@@ -38,6 +40,8 @@ public class StudentController {
     ApplyLectureRepository applyLectureRepository;
     @Autowired
     LectureDetailRepository lectureDetailRepository;
+    @Autowired
+    AssRepository assRepository;
 
     //메인페이지 세션전달
     @GetMapping("/student/login/main")
@@ -295,13 +299,57 @@ public class StudentController {
         //세션
         student student = (student) session.getAttribute("student");
         model.addAttribute("student", student);
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
 
         //강의에 대한 세부정보 가져오기
         ArrayList<LectureDetail> lectureDetailArrayList = lectureDetailRepository.deleclist(leccode);
-        //모델
+        log.info(lectureDetailArrayList.toString());
+
+
+        // 과제 여부 판단하여 가져오기
+        List<Assignment> assignmentList = new ArrayList<>();
+
+
+         for (LectureDetail lectureDetail : lectureDetailArrayList) {
+            // 각각의 강의 디테일 코드를 가져와서 assRepository.task 메소드에 전달
+            int detailCode = lectureDetail.getDelec_code();
+            Assignment assignment = assRepository.task(leccode, detailCode);
+
+            // 과제가 있을 경우에만 리스트에 추가
+            if (assignment != null) {
+                assignmentList.add(assignment);
+                model.addAttribute("assignmentList", assignmentList);
+            }
+        }
+
+
         model.addAttribute("lectureDetailArrayList",lectureDetailArrayList);
 
         return "student/delec";
+
+    }
+
+    //과제 목록 페이지로 가는 매핑
+    @GetMapping("/student/login/main/student/info/tasklist/{leccode}")
+    public String tasklist(@PathVariable int leccode, HttpSession session, Model model){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //과제리스트 가져오기
+        ArrayList<Assignment> assignmentArrayList = assRepository.tasklist(leccode);
+
+        //모델
+        model.addAttribute("assignmentArrayList",assignmentArrayList);
+
+        return "student/tasklist";
     }
 
 

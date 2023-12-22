@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/tasklist.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/SContent :: SContent}"></div>
+</header>
+<nav></nav>
+<main>
+    <div class="all_form">
+        <h2>과제</h2>
+        <div class="task_state">
+            <div>
+                현황
+            </div>
+            <div class="task_state_text">
+                종료 : 0개/평가완료 : 0개
+            </div>
+        </div>
+        <hr>
+        <div class="task_form">
+            <div class="task_title">
+                <div class="task_week">주차</div>
+                <div class="task_name">과제제목</div>
+                <div class="task_close">마감일</div>
+                <div class="task_check">과제등록여부</div>
+                <div class="task_score">채점여부</div>
+            </div>
+            <hr>
+            <div th:each="assignmentArrayList : ${assignmentArrayList}">
+            <div class="task_content">
+                <div class="task_weekC"><p th:text="${assignmentArrayList.lec_week}"></p></div>
+                <div class="task_nameC"><p th:text="${assignmentArrayList.ass_title}"></p></div>
+                <div class="task_closeC"><p th:text="${assignmentArrayList.ass_close}"></p></div>
+                <div class="task_checkC">X</div>
+                <div class="task_scoreC">X</div>
+            </div>
+            <hr>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+
+</html>

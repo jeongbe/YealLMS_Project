@@ -22,19 +22,32 @@ main{
 
 }
 
-.delec_form{
-    margin-left: 120px;
-    margin-top: 30px;
+.task_state{
+    display: flex;
+    font-size: x-large;
+    margin-top: 50px;
+
+}
+
+.task_state_text{
+
+    margin-left: 700px;
+}
+
+
+.task_form{
+    margin-left: 80px;
+    margin-top: 50px;
     width: 1200px;
 
 }
 
-.delec_title{
+.task_title{
     display: flex;
-    height: 40px;
+
 }
 
-.delec_week{
+.task_week{
     width: 150px;
     height: 40px;
     text-align: center;
@@ -42,7 +55,7 @@ main{
 
 }
 
-.delec_name{
+.task_name{
     width: 450px;
     height: 40px;
     text-align: center;
@@ -50,7 +63,7 @@ main{
 
 }
 
-.delec_att{
+.task_close{
     width: 150px;
     height: 40px;
     text-align: center;
@@ -59,7 +72,7 @@ main{
 
 }
 
-.delec_close{
+.task_check{
     width: 450px;
     height: 40px;
     text-align: center;
@@ -67,7 +80,7 @@ main{
 
 }
 
-.delec_task{
+.task_score{
     width: 150px;
     height: 40px;
     text-align: center;
@@ -77,13 +90,13 @@ main{
 
 
 
-.delec_content{
+.task_content{
     display: flex;
-    margin-top: 20px
+    margin-top: 25px
 
 }
 
-.delec_weekC{
+.task_weekC{
     width: 150px;
     height: 40px;
     text-align: center;
@@ -91,7 +104,7 @@ main{
 
 }
 
-.delec_nameC{
+.task_nameC{
     width: 450px;
     height: 40px;
     text-align: center;
@@ -99,7 +112,7 @@ main{
 
 }
 
-.delec_attC{
+.task_closeC{
     width: 150px;
     height: 40px;
     text-align: center;
@@ -108,7 +121,7 @@ main{
 
 }
 
-.delec_closeC{
+.task_checkC{
     width: 450px;
     height: 40px;
     text-align: center;
@@ -116,20 +129,13 @@ main{
 
 }
 
-.del-ec_taskC{
+.task_scoreC{
     width: 150px;
     height: 40px;
     text-align: center;
     font-size: x-large;
 
 }
-
-.delec_allform{
-       margin-top: 70px;
-
-}
-
-
 
 
 
