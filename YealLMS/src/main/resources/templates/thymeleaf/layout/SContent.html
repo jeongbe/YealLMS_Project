@@ -33,7 +33,7 @@
             <p class="point">≫</p>
             강의 정보
         </div>
-        <a href="">> 수업계획서</a>
+        <a th:href="@{/student/login/main/student/info/lecpur/{leccode}(leccode=${lectureHeader.lec_code})}">>수업계획서</a>
         <a href="">> 수강생 현황</a>
     </div>
     <div class="con2">
@@ -41,7 +41,7 @@
             <p class="point">≫</p>
             수업활동
         </div>
-        <a href="">> 온라인 강의</a>
+        <a th:href="@{/student/login/main/student/info/leclist/{leccode}(leccode=${lectureHeader.lec_code})}">온라인 강의</a>
         <a th:href="@{/student/login/main/student/info/tasklist/{leccode}(leccode=${lectureHeader.lec_code})}">과제</a>
     </div>
     <div class="con3">

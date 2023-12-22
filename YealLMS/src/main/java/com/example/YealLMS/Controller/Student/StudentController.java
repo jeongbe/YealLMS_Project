@@ -148,6 +148,7 @@ public class StudentController {
         }
 
     }
+
     //강의 목록으로 가는 매핑
     @GetMapping("/student/login/main/student/info/leclist")
     public String leclist(HttpSession session, Model model){
@@ -157,7 +158,6 @@ public class StudentController {
 
          //학생이 신청한 수강신청 정보 가져오기
          ArrayList<ApplyLecture> applyLecture = applyLectureRepository.applylist(student.getStu_num());
-
 
         // 수강신청 정보의 강의코드를 가져와서 강의 리스트를 뿌려줍니다.
         ArrayList<LectureHeader> lectureHeaderArrayList = new ArrayList<>();
@@ -313,6 +313,7 @@ public class StudentController {
 
 
          for (LectureDetail lectureDetail : lectureDetailArrayList) {
+
             // 각각의 강의 디테일 코드를 가져와서 assRepository.task 메소드에 전달
             int detailCode = lectureDetail.getDelec_code();
             Assignment assignment = assRepository.task(leccode, detailCode);
@@ -323,7 +324,6 @@ public class StudentController {
                 model.addAttribute("assignmentList", assignmentList);
             }
         }
-
 
         model.addAttribute("lectureDetailArrayList",lectureDetailArrayList);
 
@@ -352,5 +352,19 @@ public class StudentController {
         return "student/tasklist";
     }
 
+    //수업 계획서로 가는 매핑
+    @GetMapping("/student/login/main/student/info/lecpur/{leccode}")
+    public String lecpur(@PathVariable int leccode, HttpSession session, Model model){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        return "student/lecpur";
+    }
 
 }

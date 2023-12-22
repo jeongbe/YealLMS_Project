@@ -18,8 +18,8 @@ public interface AssRepository  extends JpaRepository<Assignment, Integer> {
             "on a.pro_num = p.pro_num\n" +
             "where a.pro_num = :proNum" , nativeQuery = true)
     List<Assignment> AssList(@Param("proNum") String proNum);
-
-    //세부강의까지 일치하는 과제정보가져오기
+    
+        //세부강의까지 일치하는 과제정보가져오기
     @Query(value = "SELECT *\n" +
             "FROM assignment\n" +
             "WHERE lec_code = :leccode\n" +

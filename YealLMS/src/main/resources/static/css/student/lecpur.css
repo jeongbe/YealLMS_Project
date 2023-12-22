@@ -9,7 +9,7 @@ body{
 }
 
 nav{
-    width: 350px;
+    width: 250px;
     height: 800px;
     float: left;
 }
@@ -21,6 +21,4 @@ main{
     /* background-color: blueviolet; */
 
 }
-
-
 
