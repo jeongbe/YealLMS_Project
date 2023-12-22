@@ -65,7 +65,7 @@ public class StudentController {
 
     //정보를 변경하는페이지 (세션전달)
     @GetMapping("/student/login/main/student/info/change/{stunum}")
-    public String chinfo(@PathVariable Long stunum,HttpSession session, Model model){
+    public String chinfo(@PathVariable("stunum") Long stunum,HttpSession session, Model model){
 
         //세션
         student student = (student) session.getAttribute("student");
@@ -109,7 +109,7 @@ public class StudentController {
 
     //비밀번호 변경하는페이지로 이동(세션전달)
     @GetMapping("/student/login/main/student/info/changePass/{stunum}")
-    public String changePass(@PathVariable Long stunum,HttpSession session, Model model){
+    public String changePass(@PathVariable("stunum") Long stunum,HttpSession session, Model model){
 
         //세션
         student student = (student) session.getAttribute("student");
@@ -294,7 +294,7 @@ public class StudentController {
     }
     //강의 디테일로가는 매핑
     @GetMapping("/student/login/main/student/info/leclist/{leccode}")
-    public String lecdetail(HttpSession session, Model model, @PathVariable int leccode){
+    public String lecdetail(HttpSession session, Model model, @PathVariable("leccode") int leccode){
 
         //세션
         student student = (student) session.getAttribute("student");
@@ -333,7 +333,7 @@ public class StudentController {
 
     //과제 목록 페이지로 가는 매핑
     @GetMapping("/student/login/main/student/info/tasklist/{leccode}")
-    public String tasklist(@PathVariable int leccode, HttpSession session, Model model){
+    public String tasklist(@PathVariable("leccode") int leccode, HttpSession session, Model model){
 
         //세션
         student student = (student) session.getAttribute("student");
@@ -354,7 +354,7 @@ public class StudentController {
 
     //수업 계획서로 가는 매핑
     @GetMapping("/student/login/main/student/info/lecpur/{leccode}")
-    public String lecpur(@PathVariable int leccode, HttpSession session, Model model){
+    public String lecpur(@PathVariable("leccode") int leccode, HttpSession session, Model model){
 
         //세션
         student student = (student) session.getAttribute("student");
