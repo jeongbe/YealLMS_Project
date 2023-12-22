@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/professor/p.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/student/stuinfo.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PInfo :: headerInfo}"></div>
+</header>
+<main>
+    <h1 class="stuinfo_title">나의 정보</h1>
+    <hr class="stuinfo_line">
+    <div class="stuinfo_form">
+        <img src="/static/images/lmslogo.png" class="stu_image">
+        <div>
+            <h2 class="nomal_info">기본 정보</h2>
+            <hr class="nomal_info_line">
+            <div class="studeinfo_form">
+                <div class="deinfo_line1">
+                    <div class="border_line1">구분 : 교수 </div>
+                    <div class="border_line2">학번 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_num}"></P>
+                    </div>
+                    <div class="border_line3">전공 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_major}"></P>
+                    </div>
+                </div>
+                <div class="deinfo_line2">
+                    <div class="border_line1">교수실 :
+                        <P>FDD</P></div>
+                    <div class="border_line2">이름 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_name}"></P></div>
+                    <div class="border_line3">번호 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_phone}"></P></div>
+                </div>
+                <div class="deinfo_line3">
+                    <div class="border_line1">생일 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_birth}"></P></div>
+                    <div class="border_line2">주소 :
+                        <P th:text="${ProInfo.orElse(null)?.pro_addr}"></P></div>
+                    <div class="border_line3">메일 :
+                        <P ></P></div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="stu_addinfo_form">
+        <h2 class="stu_addinfo_title"></h2>
+        <h3>블로그 주소</h3>
+        <p th:text="${ProInfo.orElse(null)?.pro_blog}"></p>
+        <div>
+            <p>교수 소개</p>
+            <p></p>
+        </div>
+    </div>
+    <div class="change_form">
+        <a ><button class="info_change">내 정보 수정</button></a>
+        <a ><button class="pass_change">비밀번호 변경</button></a>
+    </div>
+</main>
+</body>
+</html>

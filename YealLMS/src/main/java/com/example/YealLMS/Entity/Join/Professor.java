@@ -34,4 +34,10 @@ public class Professor {
     @Column
     String pro_blog;
 
+    @Column
+    String pro_email;
+
+    @Column
+    String pro_room;
+
 }

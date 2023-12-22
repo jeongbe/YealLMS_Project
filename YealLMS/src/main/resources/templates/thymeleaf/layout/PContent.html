@@ -21,7 +21,7 @@
     </div>
     <div class="header_content">
         <a href="#">내정보</a>
-        <a class="last" href="#">내 강의</a>
+        <a class="last" href="/pro/lectureList">내 강의</a>
         <div class="user_info">
             <img src="" alt="" />
             <p th:text="${professor.pro_name}"></p>
@@ -52,7 +52,7 @@
             <p class="point">≫</p>
             커뮤니티
         </div>
-        <a href="/pro/ann">> 공지사항</a>
+        <a th:href="@{/pro/ann/{lecCode}(lecCode=${lecCode})}">> 공지사항</a>
         <a href="">> Q&A</a>
     </div>
 </div>

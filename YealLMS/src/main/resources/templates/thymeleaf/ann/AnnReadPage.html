@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/ann/AnnReadPage.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="Ann-box">
+    <div class="ttt">
+        <p>제목</p>
+        <p th:text="${OneAnn.orElse(null)?.not_title}">ssdf</p>
+    </div>
+    <div class="files">
+        <p>첨부파일</p>
+        <div class="file-input">
+<!--            <input type="file" name="" >-->
+<!--            <a th:src="@{'http://192.168.2.3/images/a/' + ${OneAnn.orElse(null)?.not_file}}"> </a>-->
+
+            <a th:href="@{'http://192.168.2.3/images/a/' + ${OneAnn.orElse(null)?.not_file}}"
+               download th:text="${OneAnn.orElse(null)?.not_file}">파일 다운로드</a>
+
+
+        </div>
+    </div>
+    <div class="Ann_content">
+        <div th:utext="${OneAnn.orElse(null)?.not_content}"></div>
+    </div>
+    <div class="bb">
+        <button>목록으로</button>
+    </div>
+</div>
+</body>
+</html>

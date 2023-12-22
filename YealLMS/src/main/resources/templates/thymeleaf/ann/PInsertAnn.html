@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/ann/PinsertAnn.css">
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+<main>
+    <div class="notice-header">
+        <h1 class="menu-title">새로운 글 작성</h1>
+    </div>
+    <article>
+
+        <form enctype="multipart/form-data">
+            <input style="display:none" th:value="${lecCode}" name="LecCode" class="lecCode">
+<!--            <p style="display:none;" th:text="${lecCode}" name="LecCode"></p>-->
+            <table class="notice-list">
+                <tr class="notice-row">
+                    <th>제목</th>
+                    <input type="text" class="notice-title" name="NotTitle">
+                </tr>
+                <tr class="notice-row">
+                    <td colspan="2">
+                        <input type="file" name="NotFile" class="notice-file" multiple="multiple" accept=".jpg, .png, .jpeg, .git, .pdf">
+                    </td>
+
+                </tr>
+                <tr class="notice-row">
+                    <td colspan="2">
+                        <textarea name="NotContent" id="ir1" style="width: 100%; height: 500px;">test</textarea>
+                    </td>
+                </tr>
+
+                <tr class="notice-row">
+                    <td colspan="2">
+                        <div class="notice-submit">
+                            <button type="button" class="notice-button submit">작성하기</button>
+                            <button type="button" class="notice-button cancel">취소하기</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </article>
+</main>
+</body>
+<script type="text/javascript">
+    let oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "ir1",
+        sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+    });
+
+
+    const submitButton = document.querySelector(".submit");
+    let lecCode = document.querySelector(".lecCode").value;
+    console.log(lecCode);
+
+    submitButton.onclick = () => {
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        const textarearvalue = document.querySelector("#ir1").value;
+<!--        alert(textarearvalue);-->
+
+        let formData = new FormData(document.querySelector("form"));
+
+<!--        formData.append("userCode", getUser().user_code);-->
+
+        formData.forEach((v,k) => {
+            console.log("key: " + k);
+            console.log("vlaue: " + v);
+        })
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/pro/ann/insert",
+            enctype:"multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (response) => {
+                location.replace("/pro/ann/" + lecCode);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+<!--                enctype:"multipart/form-data",-->
+</script>
+</html>
