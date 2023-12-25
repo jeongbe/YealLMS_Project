@@ -67,4 +67,10 @@ public class testController {
 
         return "student/lecdenot";
     }
+
+    @GetMapping("/s/ass")
+    public String test4(){
+
+        return "Ass/SAssInsert";
+    }
 }
