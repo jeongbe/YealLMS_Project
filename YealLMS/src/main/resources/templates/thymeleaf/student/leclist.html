@@ -19,7 +19,6 @@
     <div th:each="lectureHeaderArrayList : ${lectureHeaderArrayList}">
         <div class="leclist_form">
         <div class="leclist_imageform">
-            <img src="/image/lmslogo.png" class="lec_image">
         </div>
         <div>
             <a th:href="@{leclist/{leccode}(leccode=${lectureHeaderArrayList.lec_code})}"><h3 th:text="${lectureHeaderArrayList.lec_name}"></h3>

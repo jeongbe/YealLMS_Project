@@ -14,13 +14,18 @@
 <main>
     <div class="not_allform">
         <div class="title_form">
-            제목 : <input type="text" class="title_input" placeholder="휴강공지" readonly>
+            제목 : <input type="text" class="title_input" th:value="${announcement.not_title}" readonly>
         </div>
+        <div class="addfile">
+            <h3>첨부 파일</h3>
+        <a th:href="@{'http://192.168.2.3/images/a/' + ${announcement.not_file}}"
+           download th:text="${announcement.not_file}">파일 다운로드</a>
         <div class="content_form">
-            <textarea class="content_input" readonly>월요일 휴강</textarea>
+        </div>
+            <textarea class="content_input" th:text="${announcement.not_content}" readonly></textarea>
         </div>
     </div>
-    <button class="notlist_btn">목록으로</button>
+    <a th:href="@{/student/login/main/student/info/lecnot/{leccode}(leccode=${lectureHeader.lec_code})}"><button class="notlist_btn">목록으로</button></a>
 </main>
 </body>
 </html>

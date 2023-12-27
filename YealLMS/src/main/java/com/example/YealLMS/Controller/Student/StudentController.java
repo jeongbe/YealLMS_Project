@@ -1,17 +1,18 @@
 package com.example.YealLMS.Controller.Student;
 
+import com.example.YealLMS.DTO.Ass.SubAssForm;
 import com.example.YealLMS.DTO.SearchForm;
 import com.example.YealLMS.DTO.Student.ApplyForm;
 import com.example.YealLMS.DTO.Student.ChangePassForm;
 import com.example.YealLMS.DTO.Student.MyinfoChageForm;
+import com.example.YealLMS.Entity.Ann.Announcement;
 import com.example.YealLMS.Entity.Ass.Assignment;
+import com.example.YealLMS.Entity.Ass.SubAss;
 import com.example.YealLMS.Entity.Join.student;
 import com.example.YealLMS.Entity.LectureDetail;
 import com.example.YealLMS.Entity.LectureHeader;
 import com.example.YealLMS.Entity.Student.ApplyLecture;
-import com.example.YealLMS.Repository.AssRepository;
-import com.example.YealLMS.Repository.LectureDetailRepository;
-import com.example.YealLMS.Repository.LectureRepository;
+import com.example.YealLMS.Repository.*;
 import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +25,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +50,10 @@ public class StudentController {
     LectureDetailRepository lectureDetailRepository;
     @Autowired
     AssRepository assRepository;
+    @Autowired
+    AssSubRepository assSubRepository;
+    @Autowired
+    AnnouncementRepository announcementRepository;
 
     //메인페이지 세션전달
     @GetMapping("/student/login/main")
@@ -349,7 +361,41 @@ public class StudentController {
         //모델
         model.addAttribute("assignmentArrayList",assignmentArrayList);
 
+        //과제 제출 테이블에서 학번으로 조회하여 제출여부 판단하기
+        Long chtask = assSubRepository.brstunum(student.getStu_num());
+
+        if (chtask != null){
+            String subtask = "제출완료";
+            model.addAttribute("subtask", subtask);
+        }
+        else {
+            String subtaskno = "미제출";
+            model.addAttribute("subtaskno", subtaskno);
+        }
+
+
         return "student/tasklist";
+    }
+
+    //과제 디테일로가는 매핑assignment
+    @GetMapping("/student/login/main/student/info/taskdetail/{leccode}/{assnum}")
+    public String taskdetail(HttpSession session, Model model, @PathVariable("leccode") int leccode,@PathVariable("assnum") int assnum){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //과제코드로 해당과제 가져오기
+        Assignment assignment = assRepository.findById(assnum).orElse(null);
+        model.addAttribute("assignment",assignment);
+
+
+
+        return "student/taskdetail";
     }
 
     //수업 계획서로 가는 매핑
@@ -365,6 +411,116 @@ public class StudentController {
         model.addAttribute("lectureHeader",lectureHeader);
 
         return "student/lecpur";
+    }
+
+    //과제를 등록하는 페이지로 가는 매핑
+    @GetMapping("/student/login/main/student/info/taskput/{leccode}/{assnum}")
+    public String taskput(HttpSession session, Model model, @PathVariable("leccode") int leccode,@PathVariable("assnum") int assnum){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //과제세션
+        Assignment assignment = assRepository.findById(assnum).orElse(null);
+        model.addAttribute("assignment",assignment);
+
+
+
+        return "student/taskput";
+    }
+
+    //학생이 과제를 제출할때 이루어지는 매핑
+    @PostMapping("/student/login/main/student/info/subtask/{leccode}")
+    public String subtask(HttpSession session, Model model, @PathVariable("leccode") int leccode,SubAssForm form,@RequestParam(value = "subfile",required = false) MultipartFile file1){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+
+        //디폴트로 점수는 우선 0으로 세팅됨
+        form.setTaskscore(0);
+
+        String link = "\\\\192.168.2.3\\images\\a";
+
+        try {
+            if(file1 != null){
+                String vio1 = link + File.separator + file1.getOriginalFilename();
+                Path filePath = Paths.get(vio1);
+                Files.copy(file1.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            }
+        }catch (IOException e) {
+            log.error("Error occurred while copying the file: {}", e.getMessage());
+            e.printStackTrace();
+            return "";
+        }
+
+        //과제 제출 테이블로 저장과정
+        form.setAsscheck("제출");
+        SubAss subAss = form.toEntity();
+
+         //과제 제출 인원이 생길때마다 1씩 추가
+        SubAss asscnt = assSubRepository.findById(subAss.getTask_num()).orElse(null);
+
+        if (asscnt != null){
+         int cnt = asscnt.getAss_cnt();
+         cnt++;
+         subAss.setAss_cnt(cnt);
+        }
+
+
+         assSubRepository.save(subAss);
+
+
+
+        return "redirect:/student/login/main/student/info/tasklist/" + leccode;
+    }
+
+    //공지사항으로 가는 매핑
+    @GetMapping("/student/login/main/student/info/lecnot/{leccode}")
+    public String lecnot(HttpSession session, @PathVariable("leccode") int leccode, Model model){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //강의코드에 해당하는 공지사항 가져오기
+        ArrayList<Announcement> announcementArrayList = announcementRepository.notList(leccode);
+        model.addAttribute("announcementArrayList",announcementArrayList);
+
+        return "student/lecnot";
+    }
+
+    //공지사항 디테일로 가는 매핑
+    @GetMapping("/student/login/main/student/info/lecdenot/{leccode}/{notnum}")
+    public String lecdenot(HttpSession session, Model model, @PathVariable("leccode") int leccode, @PathVariable("notnum") Long notnum){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //공지 코드에 해당하는 공지 세부사항 가져오기
+        Announcement announcement = announcementRepository.findById(notnum).orElse(null);
+        model.addAttribute("announcement",announcement);
+
+        return "student/lecdenot";
     }
 
 }

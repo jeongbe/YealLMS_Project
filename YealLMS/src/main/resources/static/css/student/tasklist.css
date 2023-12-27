@@ -134,6 +134,7 @@ main{
     height: 40px;
     text-align: center;
     font-size: x-large;
+    display:flex;
 
 }
 

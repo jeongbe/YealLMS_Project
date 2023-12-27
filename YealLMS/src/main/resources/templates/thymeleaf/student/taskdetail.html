@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/taskdetail.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/SContent :: SContent}"></div>
+</header>
+<nav></nav>
+<main>
+    <div class="all_form">
+        <h2>과제 내용</h2>
+        <hr>
+        <div class="task_form">
+            <div class="task_title">
+                <div class="task_title_text">제목</div>
+                <input type="text" class="title_input" th:value="${assignment.ass_title}" readonly>
+            </div>
+            <div class="task_content">
+                <textarea th:text="${assignment.ass_content}" readonly></textarea>
+            </div>
+        </div>
+        <a th:href="@{/student/login/main/student/info/taskput/{leccode}/{assnum}(leccode=${lectureHeader.lec_code},assnum=${assignment.ass_num})}"><button class="task_btn">등록하기</button></a>
+    </div>
+</main>
+
+</body>
+
+</html>

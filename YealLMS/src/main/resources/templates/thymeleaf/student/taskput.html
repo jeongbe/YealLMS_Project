@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/static/css/layout/style.css">
+    <link rel="stylesheet" href="/static/css/student/taskput.css"/>
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title>학생 과제 등록</title>
+</head>
+<body>
+<div class="container">
+    <div class="title-text">
+        <p>과제</p>
+    </div>
+    <div class="line"></div>
+    <div class="box-header">
+        <p>제목</p>
+        <p th:text="${assignment.ass_title}"></p>
+    </div>
+    <form method="post" th:action="@{/student/login/main/student/info/subtask/{leccode}(leccode=${lectureHeader.lec_code})}" enctype="multipart/form-data">
+        <input style="display:none;" th:value="${assignment.ass_num}" name="tasknum">
+        <input style="display:none;" th:value="${student.stu_num}" name="stunum">
+    <div class="insert-text-box">
+        <textarea name="subcontent" id="ir1" style="width: 100%; height: 500px;">test</textarea>
+    </div>
+    <div class="insert-file-box">
+        <p>첨부파일</p>
+        <div class="file-box">
+            <input type="file" name="subfile" id="file" multiple/>
+            <div class="btn-box">
+                <button>삭제</button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-box2">
+        <button type="submit" class="btn">제출하기</button>
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    let oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "ir1",
+        sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+    });
+
+    }
+
+</script>
+</html>

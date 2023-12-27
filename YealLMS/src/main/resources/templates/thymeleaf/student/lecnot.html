@@ -23,12 +23,16 @@
             <div class="lecnot_date">등록일</div>
             <div class="lecnot_cnt">조회</div>
         </div>
-        <div class="lecnot_content">
-            <div class="lecnot_numC">2</div>
-            <div class="lecnot_nameC">휴강 공지</div>
-            <div class="write_nameC">홍길동</div>
-            <div class="lecnot_dateC">2017.09.11</div>
-            <div class="lecnot_cntC">89</div>
+        <div  th:each="announcementArrayList : ${announcementArrayList}">
+            <a th:href="@{/student/login/main/student/info/lecdenot/{leccode}/{notnum}(leccode=${lectureHeader.lec_code},notnum=${announcementArrayList.not_num})}">
+                <div class="lecnot_content">
+            <div class="lecnot_numC"><p th:text="${announcementArrayList.not_num}"></p></div>
+            <div class="lecnot_nameC"><p th:text="${announcementArrayList.not_title}"></p></div>
+            <div class="write_nameC"><p th:text="${announcementArrayList.pro_name}"></p></div>
+            <div class="lecnot_dateC"><p th:text="${announcementArrayList.not_date}"></p></div>
+            <div class="lecnot_cntC"><p th:text="${announcementArrayList.not_cnt}"></p></div>
+                </div>
+            </a>
         </div>
         <hr>
     </div>

@@ -35,13 +35,18 @@
             </div>
             <hr>
             <div th:each="assignmentArrayList : ${assignmentArrayList}">
-            <div class="task_content">
+               <a th:href="@{/student/login/main/student/info/taskdetail/{leccode}/{assnum}(leccode=${lectureHeader.lec_code},assnum=${assignmentArrayList.ass_num})}">
+                <div class="task_content">
                 <div class="task_weekC"><p th:text="${assignmentArrayList.lec_week}"></p></div>
                 <div class="task_nameC"><p th:text="${assignmentArrayList.ass_title}"></p></div>
                 <div class="task_closeC"><p th:text="${assignmentArrayList.ass_close}"></p></div>
-                <div class="task_checkC">X</div>
-                <div class="task_scoreC">X</div>
+                <div class="task_checkC">
+                    <p th:text="${subtask}"></p>
+                    <p th:text="${subtaskno}"></p>
+                </div>
+                <div class="task_scoreC">0/<p th:text="${assignmentArrayList.ass_perfect}"></p></div>
             </div>
+                </a>
             <hr>
             </div>
         </div>

@@ -9,27 +9,21 @@ body{
 }
 
 main{
-    width: 1000px;
+    width: 1300px;
     height: 590px;
-    float: left;
-    background-color: pink;
-
+    margin-left: 300px;
+    background-color: burlywood;
+   border-radius:100px
 
 }
 
+
 .last_lec_title{
-    margin-top: 10px;
+    margin-top: 60px;
     margin-left: 150px;
     font-weight: bold;
 }
 
-section{
-    width: 800px;
-    height: 400px;
-    /* background-color: blueviolet; */
-    float: left;
-
-}
 
 .last_lec1, .last_lec2, .last_lec3{
     width: 200px;
@@ -44,7 +38,7 @@ section{
 }
 
 #last_lec_form1, #last_lec_form11{
-   margin-top: 20px;
+   margin-top: 100px;
    display:flex;
     justify-content: center;
     align-items: center;
@@ -75,4 +69,5 @@ section{
 
     margin-top: 20px;
 }
+
 
