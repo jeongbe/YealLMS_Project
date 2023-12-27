@@ -40,7 +40,7 @@
             <p  class="l">제출 인원</p>
             <p>평가인원</p>
         </div>
-        <div class="assList_title " th:each="AssLists : ${AssList}">
+        <div class="assList_title " th:each="AssLists,iterStat : ${AssList}">
             <p  class="l" th:text="${AssLists.lec_week}">주차</p>
             <p  class="l click" th:text="${AssLists.ass_title}" th:onclick="'javascript:location.href=&quot;/pro/SAssList/' + ${AssLists.ass_num} + '&quot;'">>과제 제목</p>
             <div class="day l" >
@@ -48,8 +48,13 @@
                 <p>~</p>
                 <p th:text="${AssLists.ass_close}">마감일</p>
             </div>
-            <p  class="l" th:text="${AssLists.ass_cnt}">제출 인원</p>
-            <p th:text="${AssLists.app_cnt}">평가인원</p>
+            <div th:each="AssCountsItem : ${AssCount[iterStat.index]}">
+                <p class="l" th:text="${AssCountsItem}">제출 인원</p>
+            </div>
+            <div th:each="ECountItem : ${eCount[iterStat.index]}">
+                <p th:text="${ECountItem}">평가인원</p>
+
+            </div>
         </div>
     </div>
 </div>

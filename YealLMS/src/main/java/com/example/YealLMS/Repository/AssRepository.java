@@ -32,4 +32,16 @@ public interface AssRepository  extends JpaRepository<Assignment, Integer> {
             "FROM assignment\n" +
             "WHERE lec_code = :leccode\n" , nativeQuery = true)
     ArrayList<Assignment> tasklist(@Param("leccode") int leccode);
+
+    @Query(value = "select ass_perfect\n" +
+            "from assignment\n" +
+            "where ass_num = :assNum", nativeQuery = true)
+    Integer getPerfect(@Param("assNum") int assNum);
+
+    //과제 채점한 학생수 구하는 ㅜ커리
+    @Query(value = "select count(*)\n" +
+            "from subtask\n" +
+            "where ass_num = :assNum\n" +
+            "and task_score between 1 and 10", nativeQuery = true)
+    Integer getG(@Param("assNum") int assNum);
 }

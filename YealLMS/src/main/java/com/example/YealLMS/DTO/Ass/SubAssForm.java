@@ -14,7 +14,7 @@ import java.util.Date;
 public class SubAssForm {
     int subnum;
 
-    int tasknum;
+    int assnum;
 
     Long stunum;
 
@@ -48,7 +48,7 @@ public class SubAssForm {
 
     public SubAss toEntity(){
 
-        return new SubAss(subnum, tasknum, stunum, subcontent, subdate, appdate,taskscore, subfile.getOriginalFilename(),asscnt,asscheck);
+        return new SubAss(subnum,assnum, stunum, subcontent, subdate, appdate,taskscore, subfile.getOriginalFilename(),asscnt,asscheck);
     }
 
 }

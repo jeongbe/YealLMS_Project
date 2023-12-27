@@ -1,6 +1,8 @@
 .stu-list{
     margin-left: 20%;
     margin-top: 10%;
+    position:relative;
+    bottom:550px;
 }
 
 .stu-list > p{

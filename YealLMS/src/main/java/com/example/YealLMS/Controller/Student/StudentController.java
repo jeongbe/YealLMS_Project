@@ -469,7 +469,7 @@ public class StudentController {
         SubAss subAss = form.toEntity();
 
          //과제 제출 인원이 생길때마다 1씩 추가
-        SubAss asscnt = assSubRepository.findById(subAss.getTask_num()).orElse(null);
+        SubAss asscnt = assSubRepository.findById(subAss.getAss_num()).orElse(null);
 
         if (asscnt != null){
          int cnt = asscnt.getAss_cnt();

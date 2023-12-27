@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/ass/PsubScore.css" />
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<div class="container">
+    <div class="title-text">
+        <p>과제</p>
+    </div>
+    <div class="line"></div>
+<!--    <div class="box-header">-->
+<!--        <p>제목</p>-->
+<!--        <p>제목 데이터 들어올 부분</p>-->
+<!--    </div>-->
+    <div class="insert-text-box">
+        <textarea name="" id="" cols="30" rows="10" readonly th:text="${subList.sub_content}"></textarea>
+    </div>
+    <div class="insert-file-box">
+        <p>첨부된 파일</p>
+        <div class="file-box">
+            <p th:text="${subList.sub_file}"></p>
+        </div>
+    </div>
+    <form th:action="@{'/pro/grading/' + ${subList.sub_num}}" method="post">
+        <input type="hidden" name="AssNum" th:value="${subList.ass_num}" />
+        <div class="check-box">
+            <p th:text="${PerfectNum}"></p>
+            <div class="check">
+                <p>점수</p>
+                <input type="text" name="AssPerfect">
+            </div>
+        </div>
+        <div class="btn6">
+            <button type="submit">확인</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

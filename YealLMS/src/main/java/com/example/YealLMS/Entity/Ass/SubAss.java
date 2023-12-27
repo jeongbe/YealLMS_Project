@@ -16,8 +16,10 @@ public class SubAss {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int sub_num;
+
     @Column
-    int task_num;
+    int ass_num;
+
     @Column
     Long stu_num;
     @Column

@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-<!--<header>-->
-<!--    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>-->
-<!--</header>-->
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
 <div class="stu-list">
     <p class="tit_">과제 학생 전체 목록</p>
     <table>
@@ -19,13 +19,14 @@
         <th>제출일</th>
         <th>평가일</th>
         <th>체점여부</th>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
+        <tr th:each="getList : ${getsubList}" th:onclick="'javascript:location.href=&quot;/pro/read/sub/' + ${getList.sub_num} + '&quot;'">
+            <td th:text="${getList.stu_num}"></td>
+            <td th:text="${getList.stu_name}"></td>
+            <td th:text="${getList.ass_check}"></td>
+            <td th:text="${getList.sub_date}"></td>
+            <td th:text="${getList.app_date}"></td>
+            <td th:text="${getList.task_score + ' / ' + Pnum}"></td>
+            <td style="display:none;" th:text="${getList.sub_num}"></td>
         </tr>
     </table>
 </div>
