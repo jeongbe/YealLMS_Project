@@ -96,4 +96,13 @@ public class PAssController {
 
         return "Ass/PAssPage";
     }
+
+    //과제 학생 제출 목록
+    @GetMapping("/SAssList/{ass_num}")
+    public String SAssList(Model model,HttpSession session,@PathVariable("ass_num")  String assNum){
+
+        log.info(assNum);
+
+        return "Ass/PAssList";
+    }
 }

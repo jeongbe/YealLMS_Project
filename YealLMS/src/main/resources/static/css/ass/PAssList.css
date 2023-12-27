@@ -1,0 +1,29 @@
+.stu-list{
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+.stu-list > p{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+table, th, tr, td{
+    border: 1px solid #808080;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: antiquewhite;
+}
+
+
+th, td{
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table{
+    width: 1300px;
+}

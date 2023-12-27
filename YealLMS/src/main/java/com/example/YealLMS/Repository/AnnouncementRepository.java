@@ -24,5 +24,11 @@ public interface AnnouncementRepository extends JpaRepository<Announcement,Long>
             "order by not_num desc", nativeQuery = true)
     ArrayList<Announcement> notList(@Param("lecCode") int leCode);
 
-
+	    //교수가 작성한 모든 강의의 공지사항
+    @Query(value = "select *\n" +
+            "from ann\n" +
+            "where pro_num=:proNum\n" +
+            "order by not_date desc\n" +
+            "limit 10", nativeQuery = true)
+    List<Announcement> AnnList(@Param("proNum") Long proNum);
 }

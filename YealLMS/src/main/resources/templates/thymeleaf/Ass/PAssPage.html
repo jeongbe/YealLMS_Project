@@ -42,7 +42,7 @@
         </div>
         <div class="assList_title " th:each="AssLists : ${AssList}">
             <p  class="l" th:text="${AssLists.lec_week}">주차</p>
-            <p  class="l click" th:text="${AssLists.ass_title}">과제 제목</p>
+            <p  class="l click" th:text="${AssLists.ass_title}" th:onclick="'javascript:location.href=&quot;/pro/SAssList/' + ${AssLists.ass_num} + '&quot;'">>과제 제목</p>
             <div class="day l" >
                 <p th:text="${AssLists.ass_start}">시작일</p>
                 <p>~</p>

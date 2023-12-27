@@ -17,4 +17,11 @@ public interface LectureListRepository extends JpaRepository<LectureList,Integer
             "on l.pro_num = p.pro_num\n" +
             "where l.pro_num = :pro_num", nativeQuery = true)
     List<LectureList> getLeList(@Param("pro_num") Long pro_num);
+
+    //교수 메인 페이지 진행중인 강의
+    @Query(value = "select *\n" +
+            "from lheader\n" +
+            "where pro_num = :proNum\n" +
+            "limit 10", nativeQuery = true)
+    List<LectureList> getAllList(@Param("proNum") Long proNum);
 }

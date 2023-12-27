@@ -2,15 +2,20 @@ package com.example.YealLMS.Controller.join;
 
 import com.example.YealLMS.DTO.JoinForm.StuCertiForm;
 import com.example.YealLMS.DTO.JoinForm.StuJoinForm;
+import com.example.YealLMS.Entity.Ann.Announcement;
 import com.example.YealLMS.Entity.Join.Professor;
 import com.example.YealLMS.Entity.Join.student;
 import com.example.YealLMS.Entity.LectureDetail;
+import com.example.YealLMS.Entity.ProfessorEntity.LectureList;
+import com.example.YealLMS.Repository.AnnouncementRepository;
 import com.example.YealLMS.Repository.LectureDetailRepository;
+import com.example.YealLMS.Repository.LectureListRepository;
 import com.example.YealLMS.Repository.studnet.ApplyLectureRepository;
 import com.example.YealLMS.Repository.studnet.ProfessorRepository;
 import com.example.YealLMS.Repository.studnet.Studentrepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +24,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
+@Slf4j
 @Controller
 public class certiController {
 
@@ -33,6 +40,12 @@ public class certiController {
 
     @Autowired
     ApplyLectureRepository applyLectureRepository;
+
+    @Autowired
+    AnnouncementRepository announcementRepository;
+
+    @Autowired
+    LectureListRepository lectureListRepository;
 
 
      //학번 인증 매핑
@@ -124,6 +137,14 @@ public class certiController {
                 HttpSession session = request.getSession();
                 session.setAttribute("professor",professor);
                 model.addAttribute("professor", professor);
+
+                List<Announcement> annList = announcementRepository.AnnList(professor.getPro_num());
+                model.addAttribute("annList", annList);
+
+                List<LectureList> getAllList = lectureListRepository.getAllList(professor.getPro_num());
+                log.info(getAllList.toString());
+                model.addAttribute("getAllList" , getAllList);
+
                 return "professor/PMain";
             }
             else {
