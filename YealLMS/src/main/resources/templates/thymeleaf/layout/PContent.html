@@ -20,7 +20,7 @@
         >
     </div>
     <div class="header_content">
-        <a href="#">내정보</a>
+        <a href="/pro/info">내정보</a>
         <a class="last" href="/pro/lectureList">내 강의</a>
         <div class="user_info">
             <img src="" alt="" />
@@ -36,15 +36,15 @@
             <p class="point">≫</p>
             강의 정보
         </div>
-        <a href="">> 수업계획서</a>
-        <a href="">> 수강생 현황</a>
+        <a th:href="@{/pro/lecinfo/{lecCode} (lecCode=${lecCode})}">> 수업계획서</a>
+        <a th:href="@{/pro/stulist/{lecCode}(lecCode=${lecCode})}">> 수강생 현황</a>
     </div>
     <div class="con2">
         <div>
             <p class="point">≫</p>
             수업활동
         </div>
-        <a href="">> 온라인 강의</a>
+        <a th:href="@{/pro/lectureList/DetailList/{lec_code} (lec_code=${lecCode})}">> 온라인 강의</a>
         <a th:href="@{/pro/asslist/{proNum} (proNum=${professor.pro_num})}">> 과제</a>
     </div>
     <div class="con3">

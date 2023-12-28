@@ -142,6 +142,7 @@ public class PAssController {
 
 //        log.info(assNum);
         List<GetSubtask> getSubtaskList = getSubtaskRepository.getSubList(assNum);
+        log.info(getSubtaskList.toString());
         model.addAttribute("getsubList",getSubtaskList);
 
         //만점 점수 가져옴

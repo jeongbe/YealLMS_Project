@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/student/lecpur.css">
+    <link rel="stylesheet" href="/static/css/layout/syllabus.css">
+</head>
+
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
+</header>
+<main>
+    <div class="container">
+        <p class="title_text">수업계획서</p>
+        <div class="content1">
+            <div class="con1_1">
+                <div class="inputs">
+                    <p class="c e">교과목 명</p>
+                    <p class="d b" th:text="${lecInfo.lec_name}"></p>
+                </div>
+                <div class="inputs">
+                    <p class="c e">교수명</p>
+                    <p class="d b" th:text="${lecInfo.pro_name}"></p>
+                </div>
+                <div class="inputs">
+                    <p class="c ">학점</p>
+                    <p class="d b" th:text="${lecInfo.lec_credit}"></p>
+                </div>
+            </div>
+            <div class="con2_1">
+                <div class="inputs2 o">
+                    <p class="e x">연락처</p>
+                    <p class="d b" th:text="${lecInfo.pro_phone}"></p>
+                </div>
+                <div class="inputs2">
+                    <p class=" x">강의 기간</p>
+                    <p class="d b" th:text="${lecInfo.let_start}"></p> ~
+                    <p class="d b" th:text="${lecInfo.let_close}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="content2">
+            <p class="titl2">수업목표</p>
+            <textarea name="" id="" cols="30" rows="10" th:text="${lecInfo.lec_purpose}"></textarea>
+        </div>
+        <div class="content3">
+            <p class="titl2">평가 방법</p>
+            <div class="head j">
+                <p>출석</p>
+                <p>과제</p>
+                <p>중간고사</p>
+                <p>기말고사</p>
+            </div>
+            <div class="head ">
+                <p class="d b" th:text="${lecInfo.app_check}"></p>
+                <p class="d b" th:text="${lecInfo.app_task}"></p>
+                <p class="d b" th:text="${lecInfo.app_middle}"></p>
+                <p class="d b" th:text="${lecInfo.app_last}"></p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
