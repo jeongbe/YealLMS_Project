@@ -73,4 +73,10 @@ public class testController {
 
         return "Ass/SAssInsert";
     }
+
+    @GetMapping("/ajsi")
+    public String test0(){
+
+        return "StdList";
+    }
 }

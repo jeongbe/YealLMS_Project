@@ -362,8 +362,10 @@ public class StudentController {
         model.addAttribute("assignmentArrayList",assignmentArrayList);
 
         //과제 제출 테이블에서 학번으로 조회하여 제출여부 판단하기
-        Long chtask = assSubRepository.brstunum(student.getStu_num());
-
+        ArrayList<Long> chtask = new ArrayList<>();
+        for(Assignment check : assignmentArrayList) {
+            chtask.addAll(assSubRepository.brstunum(student.getStu_num(),check.getAss_num()));
+        }
         if (chtask != null){
             String subtask = "제출완료";
             model.addAttribute("subtask", subtask);
@@ -457,7 +459,9 @@ public class StudentController {
                 String vio1 = link + File.separator + file1.getOriginalFilename();
                 Path filePath = Paths.get(vio1);
                 Files.copy(file1.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
             }
+
         }catch (IOException e) {
             log.error("Error occurred while copying the file: {}", e.getMessage());
             e.printStackTrace();
@@ -466,7 +470,15 @@ public class StudentController {
 
         //과제 제출 테이블로 저장과정
         form.setAsscheck("제출");
+
         SubAss subAss = form.toEntity();
+
+        if ((subAss.getSub_file() == "") || (subAss.getSub_file() == null)){
+            subAss.setSub_file("없음");
+
+        }
+
+
 
          //과제 제출 인원이 생길때마다 1씩 추가
         SubAss asscnt = assSubRepository.findById(subAss.getAss_num()).orElse(null);
@@ -477,10 +489,7 @@ public class StudentController {
          subAss.setAss_cnt(cnt);
         }
 
-
-         assSubRepository.save(subAss);
-
-
+        assSubRepository.save(subAss);
 
         return "redirect:/student/login/main/student/info/tasklist/" + leccode;
     }
@@ -521,6 +530,39 @@ public class StudentController {
         model.addAttribute("announcement",announcement);
 
         return "student/lecdenot";
+    }
+
+    //수강중인 학생 현황
+    @GetMapping("/student/login/main/student/info/stulist/{leccode}")
+    public String stulist(HttpSession session, Model model, @PathVariable("leccode") int leccode){
+
+        //세션
+        student student = (student) session.getAttribute("student");
+        model.addAttribute("student", student);
+
+        //큰 강의코드 세션
+        LectureHeader lectureHeader = lectureRepository.findById(leccode).orElse(null);
+        model.addAttribute("lectureHeader",lectureHeader);
+
+        //강의코드를 기준으로 학번 가져오기
+        ArrayList<Long> stdnumlist = applyLectureRepository.brstd(leccode);
+
+        //학번을 기준으로 학생정보 가져오기
+        ArrayList<student> studentArrayList = new ArrayList<>();
+
+       for (Long stdlist : stdnumlist){
+           student student1 = studentrepository.findById(stdlist).orElse(null);
+
+           if (student1 != null){
+               studentArrayList.add(student1);
+           }
+       }
+
+       model.addAttribute("studentArrayList",studentArrayList);
+
+
+
+        return "student/lecstulist";
     }
 
 }

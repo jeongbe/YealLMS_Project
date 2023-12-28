@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/StdList.css">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <div class="body_con" th:replace="~{layout/SContent :: SContent}"></div>
+</header>
+<div class="Singup-content">
+    <div class="title-box">
+        <p>수강생 현황</p>
+        <p>총 n명</p>
+    </div>
+    <div class="list-box borders">
+        <p>이름</p>
+        <p>강의명</p>
+        <p>역활</p>
+    </div>
+    <div th:each="studentArrayList : ${studentArrayList}">
+        <div th:each="lectureHeader : ${lectureHeader}">
+    <div class="list-box ss">
+        <p th:text="${studentArrayList.stu_name}"></p>
+        <p th:text="${lectureHeader.lec_name}"></p>
+        <p>학생</p>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -24,7 +24,7 @@ public interface AnnouncementRepository extends JpaRepository<Announcement,Long>
             "order by not_num desc", nativeQuery = true)
     ArrayList<Announcement> notList(@Param("lecCode") int leCode);
 
-	    //±³¼ö°¡ ÀÛ¼ºÇÑ ¸ğµç °­ÀÇÀÇ °øÁö»çÇ×
+    //êµìˆ˜ê°€ ì‘ì„±í•œ ëª¨ë“  ê°•ì˜ì˜ ê³µì§€ì‚¬í•­
     @Query(value = "select *\n" +
             "from ann\n" +
             "where pro_num=:proNum\n" +

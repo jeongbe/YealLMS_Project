@@ -30,5 +30,11 @@ public interface ApplyLectureRepository extends CrudRepository<ApplyLecture, Lon
             "limit 3 ", nativeQuery = true)
     ArrayList<Integer>lastlec(@Param("stunum") Long stunum);
 
+    //강의코드 기준으로 학번가져오기
+    @Query(value = "select stu_num\n" +
+            "from apply_lec\n" +
+            "where lec_code = :leccode ", nativeQuery = true)
+    ArrayList<Long> brstd(@Param("leccode") int leccode);
+
 
 }
