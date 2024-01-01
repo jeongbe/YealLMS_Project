@@ -138,14 +138,7 @@ public class certiController {
                 session.setAttribute("professor",professor);
                 model.addAttribute("professor", professor);
 
-                List<Announcement> annList = announcementRepository.AnnList(professor.getPro_num());
-                model.addAttribute("annList", annList);
-
-                List<LectureList> getAllList = lectureListRepository.getAllList(professor.getPro_num());
-                log.info(getAllList.toString());
-                model.addAttribute("getAllList" , getAllList);
-
-                return "professor/PMain";
+                return "redirect:/pro/main";
             }
             else {
                 String error ="학번또는 비밀번호를 확인하세요";

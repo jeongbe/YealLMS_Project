@@ -3,7 +3,9 @@
     display: flex;
     width: 1300px;
     margin-top: 20px;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    position:relative;
+    margin-left:10%;
 }
 
 .lec_list{

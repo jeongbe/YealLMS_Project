@@ -54,6 +54,7 @@ public class PAssController {
         model.addAttribute("professor", professor);
 //        log.info(assForm.toString());
 
+        // 주차 가져오는
         LectureDetail lectureDetail = lectureDetailRepository.showLecWeek(delecCode);
         model.addAttribute("getWeek",lectureDetail);
 //        log.info(lectureDetail.toString());
@@ -95,19 +96,24 @@ public class PAssController {
     }
 
     //과제 목록 페이지
-    @GetMapping("/asslist/{pro_num}")
-    public String AssListpage(Model model, HttpSession session, @PathVariable("pro_num") String proNum) {
+    @GetMapping("/asslist/{lec_code}")
+    public String AssListpage(Model model, HttpSession session, @PathVariable("lec_code") String lecCode) {
         Professor professor = (Professor) session.getAttribute("professor");
         model.addAttribute("professor", professor);
 
+        model.addAttribute("lecCode",lecCode);
+//        log.info(lecCode);
+
 //        log.info(proNum);
-        //제출 인원
+//        제출 인원
         List<Integer> AssCont = new ArrayList<>();
 
         //평가 인원
         List<Integer> evaluation = new ArrayList<>();
 
-        List<Assignment> AssList = assRepository.AssList(proNum);
+        List<Assignment> AssList = assRepository.AssList(professor.getPro_num(),lecCode);
+//        log.info(AssList.toString());
+        model.addAttribute("AssList",AssList);
 
         for (Assignment assignment : AssList) {
             int assNum = assignment.getAss_num();
@@ -120,27 +126,24 @@ public class PAssController {
         }
 
         model.addAttribute("AssCount", AssCont);
+//        log.info(AssCont.toString());
 
         model.addAttribute("eCount",evaluation);
-
-//        log.info(AssList.toString());
-        model.addAttribute("AssList", AssList);
-
-
-//        log.info(AssCont.toString());
 
         return "Ass/PAssPage";
     }
 
 
+
     //과제 학생 제출 목록
-    @GetMapping("/SAssList/{ass_num}")
-    public String SAssList(Model model,HttpSession session,@PathVariable("ass_num")  String assNum){
+    @GetMapping("/SAssList/{lec_code}/{ass_num}")
+    public String SAssList(Model model,HttpSession session,@PathVariable("ass_num")  String assNum,@PathVariable("lec_code") String lecCode){
+        log.info(lecCode);
 
         Professor professor = (Professor) session.getAttribute("professor");
         model.addAttribute("professor", professor);
 
-//        log.info(assNum);
+        log.info("과제 학생 전체 리스트 페이지 " + assNum);
         List<GetSubtask> getSubtaskList = getSubtaskRepository.getSubList(assNum);
         log.info(getSubtaskList.toString());
         model.addAttribute("getsubList",getSubtaskList);

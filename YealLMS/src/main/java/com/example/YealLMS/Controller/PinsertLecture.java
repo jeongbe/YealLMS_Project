@@ -111,12 +111,14 @@ public class PinsertLecture {
         return "professor/PMain";
     }
 
-    //강의 디테일 등록 페이지
+    //강의 디테일 리스트 페이지
     @GetMapping("/lectureList/DetailList/{lec_code}")
     public String DetailList(HttpSession session,@PathVariable("lec_code")  String lecCode,Model model){
         Professor professor = (Professor) session.getAttribute("professor");
 //        log.info(professor.toString());
         model.addAttribute("professor", professor);
+
+        session.setAttribute("lecCode",lecCode);
 
 //        log.info(String.valueOf(lecCode));
         model.addAttribute("lecCode",lecCode);
@@ -150,7 +152,7 @@ public class PinsertLecture {
         return "professor/PlectureDInfo";
     }
 
-
+    //강의 디테일 insert 페이지
     @PostMapping("/insert/detail/{lec_code}")
     public String DInsert(HttpSession session,Model model, @PathVariable("lec_code")  String lecCode, LectureDetailForm form,
                           @RequestParam(value = "LecVideo",required = false)MultipartFile file1){
@@ -160,9 +162,6 @@ public class PinsertLecture {
 //        log.info(String.valueOf(lecCode));
         model.addAttribute("lecCode",lecCode);
 
-//        log.info("file1 이름 : " + file1.toString());
-
-//        log.info("메핑 연결");
 
         String link = "\\\\192.168.2.3\\images\\a";
 

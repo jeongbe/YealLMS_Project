@@ -1,5 +1,6 @@
 package com.example.YealLMS.Controller;
 
+import com.example.YealLMS.Entity.Ann.Announcement;
 import com.example.YealLMS.Entity.GetstuList;
 import com.example.YealLMS.Entity.Join.Professor;
 import com.example.YealLMS.Entity.Join.student;
@@ -35,6 +36,28 @@ public class ProController {
 
     @Autowired
     LectureRepository lectureRepository;
+
+    @Autowired
+    AnnouncementRepository announcementRepository;
+
+    @Autowired
+    LectureListRepository lectureListRepository;
+
+    //교수 메인 페이지
+    @GetMapping("/main")
+    public String ProMain(HttpSession session, Model model){
+        Professor professor = (Professor) session.getAttribute("professor");
+        model.addAttribute("professor", professor);
+
+        List<Announcement> annList = announcementRepository.AnnList(professor.getPro_num());
+        model.addAttribute("annList", annList);
+
+        List<LectureList> getAllList = lectureListRepository.getAllList(professor.getPro_num());
+        log.info(getAllList.toString());
+        model.addAttribute("getAllList" , getAllList);
+
+        return "professor/PMain";
+    }
     
     //교수 나의 정보 페이지
     @GetMapping("/info")

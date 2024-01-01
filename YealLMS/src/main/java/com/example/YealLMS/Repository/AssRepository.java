@@ -12,12 +12,12 @@ import java.util.List;
 @Repository
 public interface AssRepository  extends JpaRepository<Assignment, Integer> {
 
-    @Query(value = "select a.*\n" +
-            "from assignment a\n" +
-            "join professor p \n" +
-            "on a.pro_num = p.pro_num\n" +
-            "where a.pro_num = :proNum" , nativeQuery = true)
-    List<Assignment> AssList(@Param("proNum") String proNum);
+    //해당 과목에 있는 과제들 가져오기
+    @Query(value = "select *\n" +
+            "from assignment\n" +
+            "where pro_num = :proNum\n" +
+            "and lec_code = :lecCode\n" , nativeQuery = true)
+    List<Assignment> AssList(@Param("proNum") Long proNum, @Param("lecCode") String lecCode);
     
         //세부강의까지 일치하는 과제정보가져오기
     @Query(value = "SELECT *\n" +

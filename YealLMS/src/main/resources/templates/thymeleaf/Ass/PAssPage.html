@@ -24,36 +24,36 @@
             <p>개</p>
             <p>/</p>
             <p>평가완료:</p>
-            <p>0</p>
+            <p class="ok">0</p>
             <p>개</p>
         </div>
     </div>
     <div class="assList">
         <div class="assList_title head">
             <p class="l">주차</p>
-            <p  class="l">과제 제목</p>
-            <div class="day l">
+            <p  class="a-title">과제 제목</p>
+            <div class="day">
                 <p>시작일</p>
                 <p>~</p>
                 <p>마감일</p>
             </div>
-            <p  class="l">제출 인원</p>
-            <p>평가인원</p>
+            <p  class="assCount">제출 인원</p>
+            <p class="ECount">평가인원</p>
         </div>
+        <p style="display:none" th:text="${lecCode}">
         <div class="assList_title " th:each="AssLists,iterStat : ${AssList}">
             <p  class="l" th:text="${AssLists.lec_week}">주차</p>
-            <p  class="l click" th:text="${AssLists.ass_title}" th:onclick="'javascript:location.href=&quot;/pro/SAssList/' + ${AssLists.ass_num} + '&quot;'">>과제 제목</p>
-            <div class="day l" >
+        <a class="a-title" th:href="@{/pro/SAssList/{lecCode}/{assNum}(lecCode=${lecCode}, assNum=${AssLists.ass_num})}" th:text="${AssLists.ass_title}">과제 제목</a>
+        <div class="day" >
                 <p th:text="${AssLists.ass_start}">시작일</p>
                 <p>~</p>
                 <p th:text="${AssLists.ass_close}">마감일</p>
             </div>
             <div th:each="AssCountsItem : ${AssCount[iterStat.index]}">
-                <p class="l" th:text="${AssCountsItem}">제출 인원</p>
+                <p class="assCount" th:text="${AssCountsItem}">제출 인원</p>
             </div>
             <div th:each="ECountItem : ${eCount[iterStat.index]}">
-                <p th:text="${ECountItem}">평가인원</p>
-
+                <p class="ECount" th:text="${ECountItem}">평가인원</p>
             </div>
         </div>
     </div>

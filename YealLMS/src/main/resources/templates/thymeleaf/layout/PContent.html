@@ -14,7 +14,7 @@
     <div class="header_title_box">
         <img src="/static/images/YALELogo.png" />
         <a
-         href="/pro/pmain" class="s_title"
+         href="/pro/main" class="s_title"
         >예일대학교
             <p>LMS</p></a
         >
@@ -45,7 +45,7 @@
             수업활동
         </div>
         <a th:href="@{/pro/lectureList/DetailList/{lec_code} (lec_code=${lecCode})}">> 온라인 강의</a>
-        <a th:href="@{/pro/asslist/{proNum} (proNum=${professor.pro_num})}">> 과제</a>
+        <a th:href="@{/pro/asslist/{lecCode} (lecCode=${lecCode})}">> 과제</a>
     </div>
     <div class="con3">
         <div>

@@ -50,9 +50,49 @@
     font-size: 20px;
     width: 1100px;
     border-top: 1px solid #c8c3c3;
-    border-left: 1px solid #c8c3c3;
-    border-right: 1px solid #c8c3c3;
 }
+
+
+.l{
+    width:150px;
+    text-align:center;
+}
+
+.assList_title {
+    display:flex;
+    text-align:center;
+    border-bottom: 1px solid #c8c3c3;
+    height:30px;
+}
+
+.a-title{
+    width:400px;
+    text-align:center;
+}
+
+.day{
+    display:flex;
+    width:300px;
+    text-align:center;
+}
+
+.assCount{
+    width:120px;
+}
+
+.ECount{
+    width:120px;
+}
+
+.head{
+    border-bottom:1px solid #c8c3c3;
+    border-right:1px solid #c8c3c3;
+    border-left:1px solid #c8c3c3;
+    height:30px;
+}
+
+/*
+
 
 .day {
     display: flex;
@@ -70,7 +110,13 @@
 .day p {
     width: 220px;
     display: flex;
-    /* background-color: aqua; */
+    *//*
+
+*/
+/* background-color: aqua; *//*
+*/
+/*
+
     align-items: center;
     justify-content: space-around;
 
@@ -78,6 +124,7 @@
 
 .l {
     border-right: 1px solid #c8c3c3;
+    width:219px;
 }
 
 .head {
@@ -88,12 +135,27 @@
 
 .click {
     --padding: 1.5rem;
-    /* font-size: 2em; */
+    *//*
+
+*/
+/* font-size: 2em; *//*
+*/
+/*
+
     position: relative;
     cursor: pointer;
-    /* background-color: aqua; */
+    *//*
+
+*/
+/* background-color: aqua; *//*
+*/
+/*
+
 }
 
+*//*
+
+*/
 /* .click::after {
     content: "";
     position: absolute;
@@ -117,7 +179,9 @@
         transform-origin: left;
         transition: transform 500ms ease, margin-left .5s ease;
     }
-} */
+} *//*
+
+
 
 .click:hover {
     box-shadow: 1px 1px 20px #ddd;
@@ -127,3 +191,4 @@
 .a {
     width: 200px;
 }
+*/
