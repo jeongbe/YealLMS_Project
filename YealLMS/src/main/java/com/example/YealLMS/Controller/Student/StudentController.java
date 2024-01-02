@@ -454,6 +454,7 @@ public class StudentController {
 
         String link = "\\\\192.168.2.3\\images\\a";
 
+
         try {
             if(file1 != null && !file1.isEmpty()){
                 String vio1 = link + File.separator + file1.getOriginalFilename();

@@ -14,7 +14,7 @@ public interface AssSubRepository extends JpaRepository<SubAss,Integer> {
             "AND ass_num = :assnum ", nativeQuery = true)
     ArrayList<Long> brstunum(@Param("stunum") Long stunum, @Param("assnum") int assnum);
 
-    //°úÁ¦ Á¦Ãâ ÀÎ¿ø
+    //ê³¼ì œ ì œì¶œ ì¸ì›
     @Query(value = "select count(*)\n" +
             "from subtask\n" +
             "where ass_num = :assNum", nativeQuery = true)

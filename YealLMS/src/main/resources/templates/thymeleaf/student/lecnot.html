@@ -1,41 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/ann/PAnnpage.css">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/student/lecnot.css">
 </head>
-
 <body>
-<header><div class="body_con" th:replace="~{layout/SContent :: SContent}"></div></header>
-<nav></nav>
-<main>
-
-    <h2>강의 제목</h2>
-    <hr>
-    <div class="lecnot_form">
-        <div class="lecnot_title">
-            <div class="lecnot_num">번호</div>
-            <div class="lecnot_name">제목</div>
-            <div class="write_name">작성자</div>
-            <div class="lecnot_date">등록일</div>
-            <div class="lecnot_cnt">조회</div>
+<header>
+    <div class="body_con" th:replace="~{layout/SContent :: SContent}"></div>
+</header>
+<div class="container">
+    <p style="display:none;" th:text="${lecCode}"></p>
+    <p class="title_text">공지사항</p>
+    <div class="line"></div>
+    <div class="page_info">
+        <div class="info">
+            <p>게시물 개수</p>
+            <p>,</p>
+            <p> 페이지 정보</p>
         </div>
-        <div  th:each="announcementArrayList : ${announcementArrayList}">
-            <a th:href="@{/student/login/main/student/info/lecdenot/{leccode}/{notnum}(leccode=${lectureHeader.lec_code},notnum=${announcementArrayList.not_num})}">
-                <div class="lecnot_content">
-            <div class="lecnot_numC"><p th:text="${announcementArrayList.not_num}"></p></div>
-            <div class="lecnot_nameC"><p th:text="${announcementArrayList.not_title}"></p></div>
-            <div class="write_nameC"><p th:text="${announcementArrayList.pro_name}"></p></div>
-            <div class="lecnot_dateC"><p th:text="${announcementArrayList.not_date}"></p></div>
-            <div class="lecnot_cntC"><p th:text="${announcementArrayList.not_cnt}"></p></div>
-                </div>
-            </a>
-        </div>
-        <hr>
     </div>
-</main>
+    <div class="ann_container">
+        <div class="header_box2 co l">
+            <p>번호</p>
+            <p>제목</p>
+            <p>작성자</p>
+            <p>등록일</p>
+            <p>조회</p>
+        </div>
+        <div>
+            <div class="header_box2" th:each="announcementArrayList : ${announcementArrayList}">
+                <p></p>
+                <p style="display:none" th:text="${announcementArrayList.not_num}"></p>
+                <a th:href="@{/student/login/main/student/info/lecdenot/{leccode}/{notnum}(leccode=${lectureHeader.lec_code},notnum=${announcementArrayList.not_num})}">
+                <p th:text="${announcementArrayList.not_title}">제목</p>
+                </a>
+                <p th:text="${announcementArrayList.pro_name}">작성자</p>
+                <p th:text="${announcementArrayList.not_date}">등록일</p>
+                <p th:text="${announcementArrayList.not_cnt}">조회</p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -22,108 +22,76 @@ main{
 
 }
 
-.lecnot_form{
-    margin-left: 120px;
-    margin-top: 30px;
-    width: 1200px;
-
+.container{
+    width: 1300px;
+    margin-left: 20%;
+    margin-top: 10%;
+    position: relative;
+    bottom: 600px;
 }
 
-.lecnot_title{
+.line{
+    width: 1300px;
+    height: 3px;
+    margin-top: 10px;
+    border-bottom: 1px solid #808080;
+    /* background-color: aqua; */
+    margin-bottom: 30px;
+}
+.title_text{
+    font-size: 30px;
+    /* margin-bottom: 10px; */
+}
+
+.page_info{
     display: flex;
-    border: 1px solid black;
-    height: 40px;
+    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
-.lecnot_num{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.lecnot_name{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.write_name{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-
-}
-
-.lecnot_date{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.lecnot_cnt{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-
-
-.lecnot_content{
+.info{
     display: flex;
-    margin-top: 20px
-
 }
 
-.lecnot_numC{
-    width: 150px;
+.ann_container{
+    width: 100%;
+    /* background-color: aqua; */
+    border: 1px solid #c6c4c4;
+}
+
+.header_box2{
+    width: 100%;
+    display: flex;
+}
+
+.l{
+
+    border-bottom: 1px solid #c6c4c4;
+}
+
+.co{
+    background-color: antiquewhite;
+}
+
+.header_box2 p{
+    width: 260px;
     height: 40px;
-    text-align: center;
-    font-size: x-large;
-
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #c6c4c4;
 }
 
-.lecnot_nameC{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
+button{
+    background-color: #c69774;
+    width: 120px;
+    height: 30px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
 }
-
-.write_nameC{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-
-}
-
-.lecnot_dateC{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.lecnot_cntC{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
 
 

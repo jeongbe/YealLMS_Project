@@ -14,57 +14,44 @@
 </header>
 <nav></nav>
 <main>
-
-    <div class="delec_allform">
-        <h2>강의 제목</h2>
-        <hr>
-        <div class="delec_form">
-            <div class="delec_title">
-                <div class="delec_week">주차</div>
-                <div class="delec_name">강의 주제</div>
-                <div class="delec_att">출석여부</div>
-                <div class="delec_close">마감일</div>
-                <div class="delec_task">과제</div>
-            </div>
-            <hr>
-            <div th:each="lectureDetailArrayList : ${lectureDetailArrayList}">
-                <div class="delec_content">
-                    <div class="delec_weekC">
-                        <p th:text="${lectureDetailArrayList.lec_week}"></p>
-                    </div>
-                    <div class="delec_nameC">
-                        <p th:text="${lectureDetailArrayList.lec_title}"></p>
-                    </div>
-                    <div class="delec_attC">
-                        <p th:text="${lectureDetailArrayList.lec_check}"></p>
-                    </div>
-                    <div class="delec_closeC">
-                        <p th:text="${lectureDetailArrayList.lec_close}"></p>
-                    </div>
-                    <p class="lecCode" style="display:none;" th:text="${lectureDetailArrayList.lec_code}"></p>
-                    <p class="lecWeek" style="display:none;" th:text="${lectureDetailArrayList.lec_week}"></p>
-                    <div th:each="assignmentList : ${assignmentList}" class="del-ec_taskC">
-                    <div th:if="${assignmentList.delec_code == lectureDetailArrayList.delec_code}">
-                        <p th:text="${assignmentList.ass_title}"></p>
-                    </div>
-                    </div>
-                </div>
-                <hr>
+    <div class="line"></div>
+    <!-- 강의 헤더 제목 데이터 받는곳 -->
+    <p class="l_h_t">강의 제목</p>
+    <div class="lecture_list_box">
+        <p class="l l2">주차</p>
+        <p class="l l4">강의 주제</p>
+        <p class="l">출석 여부</p>
+        <p class="l">마감일</p>
+        <p class="l">과제</p>
+    </div>
+    <!--    th:onclick="'javascript:location.href=&quot;/pro/video/' + ${Llist.lec_week} + '&quot;'"-->
+    <div class="lecture_list_box2" th:each="lectureDetailArrayList : ${lectureDetailArrayList}" >
+        <p class="l l2 l3 lecWeek" th:text="${lectureDetailArrayList.lec_week}"></p>
+        <p class="l l3 l4 lecTitle" th:text="${lectureDetailArrayList.lec_title}"></p>
+        <!--        th:text="${Llist.lec_check}"-->
+        <div class="l l3" >미결</div>
+        <p class="l l3" th:text="${lectureDetailArrayList.lec_close}"></p>
+        <p class="lecCode" style="display:none;" th:text="${lectureDetailArrayList.lec_code}"></p>
+        <p class="delecCode" style="display:none;" th:text="${lectureDetailArrayList.delec_code}"></p>
+        <div th:each="assignmentList : ${assignmentList}">
+            <div th:if="${assignmentList.delec_code == lectureDetailArrayList.delec_code}">
+                <p th:text="${assignmentList.ass_title}"></p>
             </div>
         </div>
+    </div>
     </div>
 
 </main>
 
 <script>
-    let govideo = document.querySelector('.delec_content');
+    let lecTitle = document.querySelector('.lecTitle');
 
-    govideo.onclick = () => {
+    lecTitle.onclick = () => {
         let lecCode = document.querySelector('.lecCode').textContent;
         let lecWeek = document.querySelector('.lecWeek').textContent;
-        let url = "/pro/video/" + lecCode + "/" + lecWeek;
+        let url = "/pro/video/" + lecCode +"/"+  lecWeek;
 
-        window.open(url, '_blank', 'width=300,height=300');
+        window.open(url, '_blank', 'width=1000,height=600');
     }
 </script>
 

@@ -22,111 +22,89 @@ main{
 
 }
 
-.delec_form{
-    margin-left: 120px;
-    margin-top: 30px;
-    width: 1200px;
 
+
+.line{
+    width: 1100px;
+    height: 3px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #808080;
+    /* background-color: aqua; */
 }
 
-.delec_title{
+.content_box{
+    position: relative;
+    margin-left: 20%;
+    bottom: 320px;
+}
+
+.title_box{
+    /* background-color: aqua; */
+    width: 1100px;
     display: flex;
-    height: 40px;
+    justify-content: space-between;
 }
 
-.delec_week{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
+.title_box p {
+    font-size: 30px;
 }
 
-.delec_name{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
+.l_h_t{
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
-.delec_att{
-    width: 150px;
+.lecture_list_box{
     height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-
-}
-
-.delec_close{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.delec_task{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-
-
-.delec_content{
+    width: 1100px;
+    /* background-color: aqua; */
     display: flex;
-    margin-top: 20px
-
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #808080;
 }
 
-.delec_weekC{
-    width: 150px;
+.l{
+    display: flex;
+    /* background-color: aqua; */
     height: 40px;
-    text-align: center;
-    font-size: x-large;
+    width: 250px;
+    justify-content: space-around;
+    align-items: center;
 
 }
 
-.delec_nameC{
-    width: 450px;
+.l2{
+    width: 100px;
+}
+
+.l3{
+
+    border-bottom: 1px solid #808080;
+}
+
+.l4{
+    width: 500px;
+}
+
+.lecture_list_box2{
     height: 40px;
-    text-align: center;
-    font-size: x-large;
-
+    width: 1100px;
+    display: flex;
+    justify-content: space-around;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.delec_attC{
-    width: 150px;
+button{
+    background-color: #c69774;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 130px;
+    font-size: 20px;
     height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-
-}
-
-.delec_closeC{
-    width: 450px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.del-ec_taskC{
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    font-size: x-large;
-
-}
-
-.delec_allform{
-       margin-top: 70px;
-
 }
 
 

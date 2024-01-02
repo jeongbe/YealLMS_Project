@@ -11,7 +11,6 @@
 
 <body>
 <header><div class="body_con" th:replace="~{layout/SContent :: SContent}"></div></header>
-<nav></nav>
 <main>
     <div class="container">
         <p class="title_text">수업계획서</p>
@@ -33,12 +32,12 @@
             <div class="con2_1">
                 <div class="inputs2 o">
                     <p class="e x">연락처</p>
-                    <p class="d b" th:text="${lectureHeader.pro_phone}"></p>
+                    <p  th:text="${lectureHeader.pro_phone}"></p>
                 </div>
                 <div class="inputs2">
                     <p class=" x">강의 기간</p>
-                    <p class="d b" th:text="${lectureHeader.let_start}"></p> ~
-                    <p class="d b" th:text="${lectureHeader.let_close}"></p>
+                    <p  th:text="${lectureHeader.let_start}"></p> ~
+                    <p  th:text="${lectureHeader.let_close}"></p>
                 </div>
             </div>
         </div>

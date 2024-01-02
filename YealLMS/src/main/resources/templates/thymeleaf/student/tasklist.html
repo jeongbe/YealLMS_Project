@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/static/css/student/tasklist.css">
 </head>
-
 <body>
 <header>
     <div class="body_con" th:replace="~{layout/SContent :: SContent}"></div>
@@ -44,7 +42,7 @@
                     <p th:text="${subtask}"></p>
                     <p th:text="${subtaskno}"></p>
                 </div>
-                    <div class="task_scoreC"><0/<p th:text="${assignmentArrayList.ass_perfect}"></p></div>
+                    <div class="task_scoreC">0/<p th:text="${assignmentArrayList.ass_perfect}"></p></div>
             </div>
                 </a>
             <hr>
@@ -52,7 +50,5 @@
         </div>
     </div>
 </main>
-
 </body>
-
 </html>
