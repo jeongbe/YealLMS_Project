@@ -11,6 +11,7 @@
     <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
 </header>
 <div class="container">
+    <p style="display:none" th:text="${lecCode}">
     <div class="title-text">
         <p>과제</p>
     </div>
@@ -28,7 +29,7 @@
             <p th:text="${subList.sub_file}"></p>
         </div>
     </div>
-    <form th:action="@{'/pro/grading/' + ${subList.sub_num}}" method="post">
+    <form th:action="@{'/pro/grading/'+${lecCode}+ '/' + ${subList.sub_num}}" method="post">
         <input type="hidden" name="AssNum" th:value="${subList.ass_num}" />
         <div class="check-box">
             <p th:text="${PerfectNum}"></p>

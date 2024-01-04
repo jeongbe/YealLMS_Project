@@ -139,6 +139,7 @@ public class PAssController {
     @GetMapping("/SAssList/{lec_code}/{ass_num}")
     public String SAssList(Model model,HttpSession session,@PathVariable("ass_num")  String assNum,@PathVariable("lec_code") String lecCode){
         log.info(lecCode);
+        model.addAttribute("lecCode",lecCode);
 
         Professor professor = (Professor) session.getAttribute("professor");
         model.addAttribute("professor", professor);
@@ -158,14 +159,18 @@ public class PAssController {
 
     
     //학생당 과제 체점 페이지
-    @GetMapping("/read/sub/{sub_num}")
-    public String ReadSub(Model model,HttpSession session,@PathVariable("sub_num")  int subNum){
+    @GetMapping("/read/sub/{lec_code}/{sub_num}")
+    public String ReadSub(Model model,HttpSession session,@PathVariable("sub_num")  int subNum,
+                          @PathVariable("lec_code")  int lecCode){
+
+        log.info(String.valueOf(lecCode));
+        model.addAttribute("lecCode",lecCode);
 
         Professor professor = (Professor) session.getAttribute("professor");
         model.addAttribute("professor", professor);
 
         SubAss subList = assSubRepository.oneSub(subNum);
-//        log.info(subList.toString());
+        log.info(subList.toString());
         model.addAttribute("subList",subList);
 
         int PerfectNum = assRepository.getPerfect(subList.getAss_num());
@@ -175,9 +180,9 @@ public class PAssController {
         return "Ass/PsubScore";
     }
 
-    @PostMapping("/grading/{sub_num}")
+    @PostMapping("/grading/{lec_code}/{sub_num}")
     public String Grading(Model model,@PathVariable("sub_num")  int subNum,@RequestParam("AssNum") int AssNum,
-    @RequestParam("AssPerfect") int assP){
+    @RequestParam("AssPerfect") int assP,@PathVariable("lec_code")  int lecCode){
 //        log.info(String.valueOf(assP));
 
         SubAss subList = assSubRepository.oneSub(subNum);
@@ -189,7 +194,7 @@ public class PAssController {
         subList.setTask_score(assP);
         assSubRepository.save(subList);
 
-        return "redirect:/pro/SAssList/" + AssNum;
+        return "redirect:/pro/SAssList/"+ lecCode + "/" + AssNum;
 //        return null;
 
     }

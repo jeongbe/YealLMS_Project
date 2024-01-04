@@ -11,6 +11,7 @@
     <div class="body_con" th:replace="~{layout/PContent :: headerC}"></div>
 </header>
 <div class="stu-list">
+    <p style="display:none" th:text="${lecCode}">
     <p class="tit_">과제 학생 전체 목록</p>
     <table>
         <th>학번</th>
@@ -19,15 +20,19 @@
         <th>제출일</th>
         <th>평가일</th>
         <th>체점여부</th>
-        <tr th:each="getList : ${getsubList}" th:onclick="'javascript:location.href=&quot;/pro/read/sub/' + ${getList.sub_num} + '&quot;'">
+        <tr th:each="getList : ${getsubList}">
             <td th:text="${getList.stu_num}"></td>
-            <td th:text="${getList.stu_name}"></td>
+            <td>
+                <a th:if="${getList.sub_num != null}" th:href="@{/pro/read/sub/{lecCode}/{subNum} (lecCode=${lecCode}, subNum=${getList.sub_num})}" th:text="${getList.stu_name}"></a>
+                <span th:if="${getList.sub_num == null}" th:text="${getList.stu_name}"></span>
+            </td>
             <td th:text="${getList.ass_check}"></td>
             <td th:text="${getList.sub_date}"></td>
             <td th:text="${getList.app_date}"></td>
             <td th:text="${getList.task_score + ' / ' + Pnum}"></td>
             <td style="display:none;" th:text="${getList.sub_num}"></td>
         </tr>
+
     </table>
 </div>
 </body>
